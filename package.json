@@ -1,0 +1,33 @@
+{
+  "name": "tmp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./server -s",
+    "build": "npm run clean && npm run build-server",
+    "start": "node ./build/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hojas/tmp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hojas/tmp/issues"
+  },
+  "homepage": "https://github.com/hojas/tmp#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "koa": "^2.0.0",
+    "mongoose": "^4.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-preset-latest": "^6.14.0"
+  }
+}
