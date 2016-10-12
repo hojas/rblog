@@ -9,21 +9,15 @@ const userSchema = new Schema({
     password: String,
 });
 
-userSchema.methods.add = async function() {
-    this.password = md5(this.password);
-
-    try {
-        await this.findOne({ email });
-    } catch (e) {
+userSchema.statics.add = async function(user) {
+    let document = await this.findOne({ email: user.email });
+    if (document) {
+        return { status: 'error', msg: '此邮箱已注册' };
     }
-    return await this.save();
+
+    let u = await user.save();
+    return { status: 'success', msg: '注册成功' };
 };
 
-userSchema.statics.isExisted = async function(email) {
-    try {
-    } catch (e) {
-        return await true;
-    }
-    return await false;
-};
+export default mongoose.model('User', userSchema);
 
