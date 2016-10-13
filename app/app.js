@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import AppContainer from './containers/app';
-import PostsContainer from './containers/post';
+import PostsContainer from './containers/posts';
 
 render(
     <Router history={browserHistory}>

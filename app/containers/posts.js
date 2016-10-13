@@ -9,16 +9,22 @@ class PostsContainer extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/posts').then(posts => {
-            console.log(pots);
+        fetch('/api/posts').then(data => {
+            return data.json();
+        }).then(posts => {
             this.setState({ posts });
         });
     }
 
     render() {
-        return (
-            <Posts posts={this.state.posts} />
-        );
+        let posts = this.state.posts;
+
+        if (posts.length) {
+            return (
+                <Posts posts={this.state.posts} />
+            );
+        }
+        return (<div>Loading...</div>);
     }
 }
 
