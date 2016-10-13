@@ -8,6 +8,7 @@
     "build-app": "npm run clean-app && webpack",
     "clean-server": "rm -rf build && mkdir build",
     "build-server": "npm run clean-server && babel -d ./build ./server -s",
+    "build": "npm run build-server && npm run build-app",
     "start": "node ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,7 +28,6 @@
     "koa-nunjucks-next": "^1.1.1",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
-    "koa-static": "^3.0.0",
     "mongoose": "^4.6.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import path from 'path';
 import Koa from 'koa';
 import koaRouter from 'koa-router';
-import serve from 'koa-static';
 import send from 'koa-send';
 import mongoose from 'mongoose';
 import views from 'koa-nunjucks-next';
@@ -18,7 +17,6 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/kblog');
 mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'));
 
-//app.use(serve('../static'));
 app.use(async (ctx, next) => {
     await send(ctx, ctx.path, { root: path.resolve(__dirname, '../static') });
 
