@@ -1,9 +1,6 @@
 import mongoose from 'mongoose';
-import md5 from '../common/md5';
 
-const { Schema } = mongoose;
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
@@ -19,5 +16,7 @@ userSchema.statics.add = async function(user) {
     return { status: 'success', msg: '注册成功' };
 };
 
-export default mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema);
+
+export { User };
 
