@@ -21,7 +21,7 @@ class PostsContainer extends Component {
 
         if (posts.length) {
             return (
-                <Posts posts={this.state.posts} />
+                <Posts posts={posts} />
             );
         }
         return (<div>Loading...</div>);

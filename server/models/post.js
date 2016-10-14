@@ -19,6 +19,15 @@ postSchema.statics.findByCate = async function(cate) {
     return posts;
 };
 
+postSchema.statics.findById = async function(id) {
+    let post = await this.findOne({ id });
+
+    if (post) {
+        return post;
+    }
+    return { status: 'error', msg: '没有找到相关文章' };
+};
+
 let Post = mongoose.model('Post', postSchema);
 
 export { Post };
