@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Posts from '../components/posts';
+import { getPosts } from '../actions';
 
 class PostsContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { posts: [] };
     }
 
-    componentDidMount() {
-        fetch('/api/posts').then(data => {
-            return data.json();
-        }).then(posts => {
-            this.setState({ posts });
-        });
+    componentWillMount() {
+        const { params, dispatch, getPosts } = this.props;
+        dispatch(getPosts(params.cate));
     }
 
     render() {
-        let posts = this.state.posts;
+        const { posts } = this.props;
 
-        if (posts.length) {
+        if (posts) {
+            console.log('render posts')
             return (
                 <Posts posts={posts} />
             );
         }
-        return (<div>Loading...</div>);
+        return (<div>loading...</div>);
     }
 }
 
-export default PostsContainer;
+const mapStateToProps = state => ({
+    posts: state.posts.posts,
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatch,
+    getPosts,
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(PostsContainer);
 

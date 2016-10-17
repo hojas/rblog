@@ -15,7 +15,9 @@ postSchema.statics.findByCate = async function(cate) {
     let current_cate = cate
         ? { category: { name: cate.name, url: cate.url }}
         : {};
+
     let posts = await this.find(current_cate);
+
     return posts;
 };
 

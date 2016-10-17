@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Header from '../components/header';
+import { getCates, getPosts } from '../actions';
 
 class AppContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { cates: [] };
     }
 
-    componentDidMount() {
-        fetch('/api/cates').then(data => {
-            return data.json();
-        }).then(cates => {
-            this.setState({ cates });
-        });
+    componentWillMount() {
+        const { dispatch, getCates } = this.props;
+        dispatch(getCates());
     }
 
     render() {
-        let cates = this.state.cates;
+        const { cates, fetchPosts } = this.props;
 
         if (cates) {
+            console.log('render header');
             return (
                 <div>
-                    <Header cates={cates} currentCate='index' />
+                    <Header cates={cates}
+                        currentCate={'index'}
+                        getPosts={fetchPosts}
+                    />
                     <div className="container">{this.props.children}</div>
                 </div>
             );
         }
-
         return (<div>loading...</div>);
     }
 }
 
-export default AppContainer;
+const mapStateToProps = state => ({
+    cates: state.cates.cates,
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatch,
+    getCates,
+    fetchPosts: cate => dispatch(getPosts(cate)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AppContainer);
 

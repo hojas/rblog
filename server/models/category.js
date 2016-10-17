@@ -17,7 +17,6 @@ categorySchema.statics.findByUrl = async function(url) {
     if (cate) {
         return cate;
     }
-
     return { status: 'error', msg: '此分类不存在' };
 };
 

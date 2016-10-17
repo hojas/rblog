@@ -23,7 +23,7 @@ class ArticleContainer extends Component {
         if (post) {
             return <Article post={post} />
         }
-        return (<div>Loading...</div>);
+        return (<div>loading...</div>);
     }
 }
 
