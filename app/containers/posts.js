@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Posts from '../components/posts';
-import { getPosts } from '../actions';
+import { getArticle, getPosts } from '../actions';
 
 class PostsContainer extends Component {
     constructor(props) {
@@ -15,12 +15,11 @@ class PostsContainer extends Component {
     }
 
     render() {
-        const { posts } = this.props;
+        const { posts, fetchArticle } = this.props;
 
         if (posts) {
-            console.log('render posts')
             return (
-                <Posts posts={posts} />
+                <Posts posts={posts} getArticle={fetchArticle} />
             );
         }
         return (<div>loading...</div>);
@@ -34,6 +33,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatch,
     getPosts,
+    fetchArticle: id => dispatch(getArticle(id)),
 });
 
 export default connect(

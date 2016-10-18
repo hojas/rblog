@@ -1,3 +1,5 @@
+import { setCurrentCate } from './category';
+
 const requestArticle = () => ({
     type: 'REQUEST_ARTICLE',
     loading: true,
@@ -19,7 +21,10 @@ export const getArticle = id => dispatch => {
 
     return fetch(`/api/post/${id}`)
         .then(data => data.json())
-        .then(json => dispatch(getArticleSuccess(json)))
+        .then(json => {
+            dispatch(setCurrentCate(json.category.url));
+            dispatch(getArticleSuccess(json));
+        })
         .catch(err => dispatch(getArticleError()));
 };
 

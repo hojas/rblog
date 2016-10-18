@@ -1,3 +1,15 @@
+export const currentCate = (state = { currentCate: 'index' }, action) => {
+    switch (action.type) {
+        case 'SET_CURRENT_CATE':
+            return {
+                ...state,
+                currentCate: action.currentCate,
+            };
+        default:
+            return state;
+    }
+};
+
 export const article = (state = {}, action) => {
     switch (action.type) {
         case 'GET_ARTICLE_SUCCESS':

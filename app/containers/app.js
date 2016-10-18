@@ -15,14 +15,13 @@ class AppContainer extends Component {
     }
 
     render() {
-        const { cates, fetchPosts } = this.props;
+        const { cates, fetchPosts, currentCate } = this.props;
 
         if (cates) {
-            console.log('render header');
             return (
                 <div>
                     <Header cates={cates}
-                        currentCate={'index'}
+                        currentCate={currentCate}
                         getPosts={fetchPosts}
                     />
                     <div className="container">{this.props.children}</div>
@@ -35,6 +34,7 @@ class AppContainer extends Component {
 
 const mapStateToProps = state => ({
     cates: state.cates.cates,
+    currentCate: state.currentCate.currentCate,
 });
 
 const mapDispatchToProps = dispatch => ({

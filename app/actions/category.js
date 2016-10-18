@@ -23,3 +23,8 @@ export const getCates = () => dispatch => {
         .catch(err => dispatch(getCatesError()));
 };
 
+export const setCurrentCate = cate => ({
+    type: 'SET_CURRENT_CATE',
+    currentCate: cate,
+});
+

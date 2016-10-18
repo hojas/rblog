@@ -22,8 +22,8 @@ render(
         <Router history={browserHistory}>
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={PostsContainer} />
+                <Route path=":id.html" component={ArticleContainer} />
                 <Route path=":cate" component={PostsContainer} />
-                <Route path=":id\.html" component={ArticleContainer} />
             </Route>
         </Router>
     </Provider>,
