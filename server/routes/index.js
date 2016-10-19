@@ -37,6 +37,8 @@ function routes(app) {
     router.get('/api/post/:id', async (ctx, next) => {
         let id = ctx.params.id;
         let post = await Post.findById(id);
+
+        post.content = post.marked;
         ctx.body = post;
     });
 

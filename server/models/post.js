@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import marked from 'marked';
 
 const postSchema = new mongoose.Schema({
     id: Number,
@@ -29,6 +30,10 @@ postSchema.statics.findById = async function(id) {
     }
     return { status: 'error', msg: '没有找到相关文章' };
 };
+
+postSchema.virtual('marked').get(function() {
+    return marked(this.content);
+});
 
 let Post = mongoose.model('Post', postSchema);
 
