@@ -24,6 +24,7 @@
   "homepage": "https://github.com/hojas/tmp#readme",
   "dependencies": {
     "babel-polyfill": "^6.13.0",
+    "highlight.js": "^9.7.0",
     "koa": "^2.0.0",
     "koa-nunjucks-next": "^1.1.1",
     "koa-router": "^7.0.1",

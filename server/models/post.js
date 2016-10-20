@@ -1,5 +1,21 @@
 import mongoose from 'mongoose';
 import marked from 'marked';
+import hljs from 'highlight.js';
+
+const renderer = new marked.Renderer();
+renderer.code = function(code) {
+    let hl = this.options.highlight;
+
+    if (hl) {
+        code= hl(code) || code;
+    }
+    return `<pre><code class="hljs">${code}\n</code></pre>`;
+}
+
+marked.setOptions({
+    renderer,
+    highlight: code => hljs.highlightAuto(code).value,
+});
 
 const postSchema = new mongoose.Schema({
     id: Number,
