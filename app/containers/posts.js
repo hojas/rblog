@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Posts from '../components/posts';
-import { getArticle, getPosts } from '../actions';
+import { getArticle, getPosts, deletePosts } from '../actions';
 
 class PostsContainer extends Component {
     constructor(props) {
@@ -14,10 +14,16 @@ class PostsContainer extends Component {
         dispatch(getPosts(params.cate));
     }
 
+    componentDidMount() {
+        const { dispatch, deletePosts } = this.props;
+        dispatch(deletePosts());
+    }
+
     render() {
         const { posts, fetchArticle } = this.props;
 
-        if (posts) {
+        console.log(posts)
+        if (posts && posts.length) {
             return (
                 <Posts posts={posts} getArticle={fetchArticle} />
             );
@@ -33,6 +39,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatch,
     getPosts,
+    deletePosts,
     fetchArticle: id => dispatch(getArticle(id)),
 });
 

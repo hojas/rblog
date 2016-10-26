@@ -23,6 +23,11 @@ export const article = (state = {}, action) => {
                 ...state,
                 loading: action.loading,
             };
+        case 'DELETE_ARTICLE':
+            return {
+                ...state,
+                article: '',
+            };
         default:
             return state;
     }
@@ -39,8 +44,15 @@ export const posts = (state = {}, action) => {
         case 'GET_POSTS_ERROR':
             return {
                 ...state,
+                status: action.status,
                 lading: action.loading,
             };
+        case 'DELETE_POSTS':
+            return {
+                state,
+                posts: [],
+                loading: action.loading,
+            }
         default:
             return state;
     }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-css": "gulp",
     "clean-app": "rm -rf static/js",
     "build-app": "npm run clean-app && webpack",
     "clean-server": "rm -rf build && mkdir build",
@@ -39,12 +40,21 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.1",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "cssnano": "^3.8.0",
+    "cssnext": "^1.8.4",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.2.0",
+    "postcss-assets": "^4.1.0",
+    "postcss-color-function": "^2.0.1",
+    "postcss-scss": "^0.3.1",
+    "precss": "^1.4.0",
     "webpack": "^1.13.2"
   }
 }

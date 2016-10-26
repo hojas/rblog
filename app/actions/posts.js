@@ -13,6 +13,12 @@ const getPostsSuccess = (posts, cate) => ({
 
 const getPostsError = () => ({
     type: 'GET_POSTS_ERROR',
+    status: 404,
+    loading: false,
+});
+
+export const deletePosts = () => ({
+    type: 'DELETE_POSTS',
     loading: false,
 });
 

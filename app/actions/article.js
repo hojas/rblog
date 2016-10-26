@@ -16,6 +16,11 @@ const getArticleError = () => ({
     loading: false,
 });
 
+export const deleteArticle = () => ({
+    type: 'DELETE_ARTICLE',
+    loading: false
+});
+
 export const getArticle = id => dispatch => {
     dispatch(requestArticle());
 

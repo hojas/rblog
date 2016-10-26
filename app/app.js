@@ -6,6 +6,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
+import NotFound from './components/notFound';
 import AppContainer from './containers/app';
 import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
@@ -24,6 +25,7 @@ render(
                 <IndexRoute component={PostsContainer} />
                 <Route path=":id.html" component={ArticleContainer} />
                 <Route path=":cate" component={PostsContainer} />
+                <Route path="*" component={NotFound} />
             </Route>
         </Router>
     </Provider>,
