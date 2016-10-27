@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "gulp",
+    "build-css": "rm -rf static/css/dest && gulp",
     "clean-app": "rm -rf static/js",
     "build-app": "npm run clean-app && webpack",
     "clean-server": "rm -rf build && mkdir build",
     "build-server": "npm run clean-server && babel -d ./build ./server -s",
-    "build": "npm run build-server && npm run build-app",
+    "build": "npm run build-server && build-css && npm run build-app",
     "start": "node ./build/app.js",
     "pm2": "pm2 start pm2.json --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -52,6 +52,7 @@
     "cssnext": "^1.8.4",
     "gulp": "^3.9.1",
     "gulp-postcss": "^6.2.0",
+    "pm2": "^2.0.19",
     "postcss-assets": "^4.1.0",
     "postcss-color-function": "^2.0.1",
     "postcss-scss": "^0.3.1",
