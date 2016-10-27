@@ -16,30 +16,30 @@ A blog build with Koa2 and React.
 
 ## Deploy
 
-1. install npm packages:
+1. install npm packages
 
-```
-$ npm install
-```
+  ```
+  $ npm install
+  ```
 
-2. build app and server:
+2. build app and server
 
-```
-$ npm run build
-```
+  ```
+  $ npm run build
+  ```
 
 3. run app
 
-```
-$ npm run pm2
-```
+  ```
+  $ npm run pm2
+  ```
 
 4. deploy Nginx
 
-Install Nginx, and then copy `rblog/nginx.conf` to `/etc/nginx/conf.d/`.
+  Install Nginx, and then copy `rblog/nginx.conf` to `/etc/nginx/conf.d/`.
 
-Restart Nginx: 
+  Restart Nginx: 
 
-```
-$ sudo service nginx restart
-```
+  ```
+  $ sudo service nginx restart
+  ```
