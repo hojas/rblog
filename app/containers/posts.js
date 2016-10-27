@@ -22,7 +22,6 @@ class PostsContainer extends Component {
     render() {
         const { posts, fetchArticle } = this.props;
 
-        console.log(posts)
         if (posts && posts.length) {
             return (
                 <Posts posts={posts} getArticle={fetchArticle} />

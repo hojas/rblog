@@ -11,6 +11,7 @@
     "build-server": "npm run clean-server && babel -d ./build ./server -s",
     "build": "npm run build-server && npm run build-app",
     "start": "node ./build/app.js",
+    "pm2": "pm2 start pm2.json --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

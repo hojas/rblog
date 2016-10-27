@@ -1,0 +1,18 @@
+{
+    apps: [{
+        name: "blog",
+        script: "./build/app.js",
+        error_file: "./logs/err.log",
+        out_file: "./logs/out.log",
+        merge_logs: true,
+        log_date_format: "YYYY-MM-DD HH:mm Z",
+        watch: true,
+        exec_mode: "fork_mode",
+        env: {
+            NODE_ENV: "development",
+        },
+        env_production: {
+            NODE_ENV: "production",
+        },
+    }]
+}
