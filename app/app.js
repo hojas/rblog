@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 
 import NotFound from './components/notFound';
 import AppContainer from './containers/app';
+import AboutContainer from './containers/about';
 import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
 
@@ -24,6 +25,7 @@ render(
             <Route path="/" component={AppContainer}>
                 <IndexRoute component={PostsContainer} />
                 <Route path=":id.html" component={ArticleContainer} />
+                <Route path="about" component={AboutContainer} />
                 <Route path=":cate" component={PostsContainer} />
                 <Route path="*" component={NotFound} />
             </Route>

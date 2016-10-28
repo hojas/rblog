@@ -24,6 +24,9 @@ const Header = ({ cates, currentCate, getPosts }) => (
                     <li className={currentCate === 'nodejs' ? 'active' : ''}>
                         <Link onClick={() => getPosts('nodejs')} to={'/nodejs'}>Node.js</Link>
                     </li>
+                    <li className={currentCate === 'about' ? 'active' : ''}>
+                        <Link to={'/about'}>关于</Link>
+                    </li>
                     {/*
                     {cates && cates.length && cates.map((cate, i) =>
                         <li className={currentCate === cate.url ? 'active' : ''} key={i}>

@@ -33,7 +33,7 @@ postSchema.statics.findByCate = async function(cate) {
         ? { category: { name: cate.name, url: cate.url }}
         : {};
 
-    let posts = await this.find(current_cate);
+    let posts = await this.find(current_cate).sort({ createdAt: -1 });
 
     return posts;
 };
