@@ -31,14 +31,14 @@ A blog build with Koa2 and React.
 3. run app
 
   ```
-  $ npm run pm2
+  $ npm run pm2:start
   ```
 
 4. deploy Nginx
 
   Install Nginx, and then copy `rblog/nginx.conf` to `/etc/nginx/conf.d/`.
 
-  Restart Nginx: 
+  Restart Nginx:
 
   ```
   $ sudo service nginx restart
