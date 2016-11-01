@@ -2,6 +2,9 @@ import 'babel-polyfill';
 import path from 'path';
 import Koa from 'koa';
 import send from 'koa-send';
+import bodyParser from 'koa-bodyparser';
+import session from 'koa-session';
+import convert from 'koa-convert';
 import mongoose from 'mongoose';
 import views from 'koa-nunjucks-next';
 
@@ -13,6 +16,12 @@ const app = new Koa();
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/kblog');
 mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'));
+
+app.use(bodyParser());
+
+// session
+app.keys = ['forever'];
+app.use(convert(session(app)));
 
 app.use(views('../views'));
 app.use(async (ctx, next) => {

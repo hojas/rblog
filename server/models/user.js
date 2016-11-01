@@ -27,12 +27,12 @@ userSchema.statics.login = async function(ctx, email, password) {
             delete user.password;
             ctx.session.user = user;
 
-            return { status: 'success', msg: '登录成功' };
+            return { status: 'success', msg: '登录成功', user };
         }
-        return { status: 'error', msg: '密码错误' };
+        return { status: 'error', msg: '密码错误', user };
     }
 
-    return { status: 'error', msg: '邮箱未注册' };
+    return { status: 'error', msg: '邮箱未注册', user };
 };
 
 let User = mongoose.model('User', userSchema);

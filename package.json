@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "rm -rf static/css/dest && gulp",
-    "clean-app": "rm -rf static/js",
-    "build-app": "npm run clean-app && webpack",
-    "clean-server": "rm -rf build && mkdir build",
-    "build-server": "npm run clean-server && babel -d ./build ./server -s",
-    "build": "npm run build-server && build-css && npm run build-app",
+    "build:css": "rm -rf static/css/dest && gulp",
+    "clean:app": "rm -rf static/js",
+    "build:app": "npm run clean:app && webpack",
+    "clean:server": "rm -rf build && mkdir build",
+    "build:server": "npm run clean:server && babel -d ./build ./server -s",
+    "build": "npm run build:server && npm run build:css && npm run build:app",
     "start": "node ./build/app.js",
-    "pm2": "pm2 start pm2.json --env production",
+    "pm2:start": "pm2 start pm2.json --env production",
+    "pm2": "pm2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,9 +29,12 @@
     "babel-polyfill": "^6.13.0",
     "highlight.js": "^9.7.0",
     "koa": "^2.0.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
     "koa-nunjucks-next": "^1.1.1",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
+    "koa-session": "^3.4.0",
     "marked": "^0.3.6",
     "mongoose": "^4.6.1",
     "react": "^15.3.2",
@@ -38,6 +42,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "redux": "^3.6.0",
+    "redux-form": "^6.1.1",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
@@ -55,7 +60,6 @@
     "pm2": "^2.0.19",
     "postcss-assets": "^4.1.0",
     "postcss-color-function": "^2.0.1",
-    "postcss-scss": "^0.3.1",
     "precss": "^1.4.0",
     "webpack": "^1.13.2"
   }

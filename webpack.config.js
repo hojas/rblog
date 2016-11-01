@@ -2,7 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: '#source-map',
+    //devtool: 'evil',
+    devtool: '#cheap-module-source-map',
     watch: false,
     entry: {
         app: './app/app.js',
@@ -16,13 +17,11 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel',
             include: path.resolve('./app'),
-            query: {
-                presets: ['latest'],
-            },
         }],
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
             'process.env': {

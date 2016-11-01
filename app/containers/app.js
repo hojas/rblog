@@ -15,7 +15,7 @@ class AppContainer extends Component {
     }
 
     render() {
-        const { cates, fetchPosts, currentCate } = this.props;
+        const { cates, fetchPosts, currentCate, user } = this.props;
 
         if (cates) {
             return (
@@ -23,6 +23,7 @@ class AppContainer extends Component {
                     <Header cates={cates}
                         currentCate={currentCate}
                         getPosts={fetchPosts}
+                        user={user}
                     />
                     <div className="container">{this.props.children}</div>
                 </div>
@@ -35,6 +36,7 @@ class AppContainer extends Component {
 const mapStateToProps = state => ({
     cates: state.cates.cates,
     currentCate: state.currentCate.currentCate,
+    user: state.login.msg.user,
 });
 
 const mapDispatchToProps = dispatch => ({

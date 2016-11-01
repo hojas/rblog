@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Header = ({ cates, currentCate, getPosts }) => (
+const Header = ({ cates, currentCate, getPosts, user }) => (
     <div className="navbar navbar-default">
         <div className="container">
             <div className="navbar-header">
@@ -35,6 +35,22 @@ const Header = ({ cates, currentCate, getPosts }) => (
                     )}
                     */}
                 </ul>
+                {user &&
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <a>Hi，{user.username}</a>
+                    </li>
+                </ul>
+                ||
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <Link to={'/login'}>登录</Link>
+                    </li>
+                    <li>
+                        <Link to={'/register'}>注册</Link>
+                    </li>
+                </ul>
+                }
             </div>
         </div>
     </div>

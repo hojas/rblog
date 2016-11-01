@@ -5,7 +5,6 @@ var cssnext = require('cssnext');
 var precss = require('precss');
 var assets = require('postcss-assets');
 var cssnano = require('cssnano');
-var scss = require('postcss-scss');
 var colorFn = require('postcss-color-function');
 
 gulp.task('css', function() {
@@ -24,7 +23,7 @@ gulp.task('css', function() {
     ];
 
     return gulp.src('./static/css/app.css')
-        .pipe(postcss(processors, { syntax: scss }))
+        .pipe(postcss(processors))
         .pipe(gulp.dest('./static/css/dest'));
 });
 

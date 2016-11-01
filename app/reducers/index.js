@@ -70,3 +70,20 @@ export const cates = (state = {}, action) => {
     }
 };
 
+let msg = {
+    status: null,
+    msg: null,
+    user: null,
+};
+export const login = (state = { msg }, action) => {
+    switch (action.type) {
+        case 'REQUEST_LOGIN':
+            return {
+                ...state,
+                msg: action.msg,
+            };
+        default:
+            return state;
+    }
+};
+
