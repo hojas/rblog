@@ -36,7 +36,7 @@ class AppContainer extends Component {
 const mapStateToProps = state => ({
     cates: state.cates.cates,
     currentCate: state.currentCate.currentCate,
-    user: state.login.msg.user,
+    user: state.login.msg.user || state.register.msg.user,
 });
 
 const mapDispatchToProps = dispatch => ({

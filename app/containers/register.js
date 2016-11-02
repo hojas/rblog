@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import Login from '../components/login';
-import { login } from '../actions';
+import Register from '../components/register';
+import { register } from '../actions';
 
-class LoginContainer extends Component {
+class RegisterContainer extends Component {
     constructor(props) {
         super(props);
     }
@@ -25,27 +25,27 @@ class LoginContainer extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, isLogin } = this.props;
         return (
-            <div className="col-md-4 col-md-offset-4 login">
-                <Login onSubmit={handleSubmit} />
+            <div className="col-md-4 col-md-offset-4 register">
+                <Register onSubmit={handleSubmit} />
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    isLogin: state.login.msg
+    isLogin: state.register.msg
 });
 
 const mapDispatchToProps = dispatch => ({
     handleSubmit: (values) => {
-        dispatch(login(values));
+        dispatch(register(values));
     }
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(LoginContainer);
+)(RegisterContainer);
 

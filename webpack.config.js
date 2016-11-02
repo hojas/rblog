@@ -7,6 +7,7 @@ module.exports = {
     watch: false,
     entry: {
         app: './app/app.js',
+        libs: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-form'],
     },
     output: {
         path: path.resolve('./static/js'),
@@ -20,9 +21,17 @@ module.exports = {
         }],
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false
+            }
+        }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'libs',
+            filename: 'libs.js',
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),

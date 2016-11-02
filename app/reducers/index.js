@@ -87,3 +87,15 @@ export const login = (state = { msg }, action) => {
     }
 };
 
+export const register = (state = { msg }, action) => {
+    switch (action.type) {
+        case 'REQUEST_REGISTER':
+            return {
+                ...state,
+                msg: action.msg,
+            };
+        default:
+            return state;
+    }
+};
+

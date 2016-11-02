@@ -10,6 +10,7 @@ import { reducer as formReducer } from 'redux-form';
 import NotFound from './components/notFound';
 import AppContainer from './containers/app';
 import LoginContainer from './containers/login';
+import RegisterContainer from './containers/register';
 import AboutContainer from './containers/about';
 import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
@@ -31,6 +32,7 @@ render(
                 <IndexRoute component={PostsContainer} />
                 <Route path=":id.html" component={ArticleContainer} />
                 <Route path="login" component={LoginContainer} />
+                <Route path="register" component={RegisterContainer} />
                 <Route path="about" component={AboutContainer} />
                 <Route path=":cate" component={PostsContainer} />
                 <Route path="*" component={NotFound} />

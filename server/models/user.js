@@ -7,15 +7,18 @@ const userSchema = new mongoose.Schema({
     password: String,
 });
 
-userSchema.statics.add = async function(user) {
+userSchema.statics.add = async function(ctx, user) {
     let document = await this.findOne({ email: user.email });
     if (document) {
         return { status: 'error', msg: '此邮箱已注册' };
     }
 
-    user.password = md5(password);
+    user.password = md5(user.password);
     let u = await user.save();
-    return { status: 'success', msg: '注册成功' };
+    user.password = null;
+    delete user.password;
+    ctx.session.user = user;
+    return { status: 'success', msg: '注册成功', user };
 };
 
 userSchema.statics.login = async function(ctx, email, password) {

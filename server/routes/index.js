@@ -27,12 +27,18 @@ function routes(app) {
         let username = ctx.request.body.username;
         let email = ctx.request.body.email;
         let password = ctx.request.body.password;
+        let repassword = ctx.request.body.repassword;
+
+        if (password !== repassword) {
+            return ctx.body = { status: 'error', msg: '两次密码不一致', user: null };
+        }
+
         let user = new User({
             username,
             email,
             password,
         });
-        ctx.body = User.add(user);
+        ctx.body = await User.add(ctx, user);
     });
     // get all categories
     router.get('/api/cates', async (ctx, next) => {
