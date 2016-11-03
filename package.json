@@ -36,7 +36,6 @@
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
     "koa-session": "^3.4.0",
-    "koa-session2": "^1.0.8",
     "marked": "^0.3.6",
     "mongoose": "^4.6.1",
     "react": "^15.3.2",

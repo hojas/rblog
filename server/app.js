@@ -5,11 +5,9 @@ import send from 'koa-send';
 import bodyParser from 'koa-bodyparser';
 import session from 'koa-session';
 import convert from 'koa-convert';
-//import session from 'koa-session2';
 import mongoose from 'mongoose';
 import views from 'koa-nunjucks-next';
 
-//import Store from './store';
 import routes from './routes';
 
 const app = new Koa();
