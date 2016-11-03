@@ -40,6 +40,20 @@ function routes(app) {
         });
         ctx.body = await User.add(ctx, user);
     });
+    // logout
+    router.get('/api/logout', async (ctx, next) => {
+        ctx.session.user = null;
+        ctx.body = { status: 'success', msg: '退出成功', user: null };
+    });
+    // get current user
+    router.get('/api/user', async (ctx, next) => {
+        let user = ctx.session.user;
+        if (user) {
+            ctx.body = user;
+        } else {
+            ctx.body = null;
+        }
+    });
     // get all categories
     router.get('/api/cates', async (ctx, next) => {
         let cates = await Category.findAll();
@@ -69,6 +83,27 @@ function routes(app) {
 
         post.content = post.marked;
         ctx.body = post;
+    });
+    // save a new post
+    router.post('/api/post/new', async (ctx, next) => {
+        let body = ctx.request.body;
+        let author = ctx.session.user.username;
+        let title = body.title;
+        let content = body.content;
+        let tags = body.tags.trim().split(/\s*,\s*/);
+        let category = body.category.split(',');
+        category = { name: category[0], url: category[1] };
+
+        let post = new Post({
+            id: 0,
+            title,
+            content,
+            author,
+            category,
+            tags,
+        });
+
+        ctx.body = await Post.add(post);
     });
 
     // render home page again

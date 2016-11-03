@@ -38,6 +38,9 @@ const Header = ({ cates, currentCate, getPosts, user }) => (
                 {user &&
                 <ul className="nav navbar-nav navbar-right">
                     <li>
+                        <Link to={'/post/new'}>写文章</Link>
+                    </li>
+                    <li>
                         <a>Hi，{user.username}</a>
                     </li>
                 </ul>
@@ -46,9 +49,11 @@ const Header = ({ cates, currentCate, getPosts, user }) => (
                     <li>
                         <Link to={'/login'}>登录</Link>
                     </li>
+                    {/*
                     <li>
                         <Link to={'/register'}>注册</Link>
                     </li>
+                    */}
                 </ul>
                 }
             </div>

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import marked from 'marked';
 import hljs from 'highlight.js';
 
+// highlight code
 const renderer = new marked.Renderer();
 renderer.code = function(code) {
     let hl = this.options.highlight;
@@ -12,6 +13,7 @@ renderer.code = function(code) {
     return `<pre><code class="hljs">${code}\n</code></pre>`;
 }
 
+// set marked
 marked.setOptions({
     renderer,
     highlight: code => hljs.highlightAuto(code).value,
@@ -28,6 +30,7 @@ const postSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
+//get get posts by category
 postSchema.statics.findByCate = async function(cate) {
     let current_cate = cate
         ? { category: { name: cate.name, url: cate.url }}
@@ -38,6 +41,7 @@ postSchema.statics.findByCate = async function(cate) {
     return posts;
 };
 
+// get article by id
 postSchema.statics.findById = async function(id) {
     let post = await this.findOne({ id });
 
@@ -47,11 +51,25 @@ postSchema.statics.findById = async function(id) {
     return { status: 'error', msg: '没有找到相关文章' };
 };
 
+// save a new article
+postSchema.statics.add = async function(post) {
+    let posts = await this.find({});
+    post.id = posts.length + 1;
+
+    let p = await post.save();
+    return {
+        status: 'success',
+        msg: '文章发布成功',
+        post,
+    };
+};
+
+// get marked article content
 postSchema.virtual('marked').get(function() {
     return marked(this.content);
 });
 
 let Post = mongoose.model('Post', postSchema);
 
-export { Post };
+export { Post }
 

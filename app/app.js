@@ -14,6 +14,7 @@ import RegisterContainer from './containers/register';
 import AboutContainer from './containers/about';
 import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
+import PublishArticleContainer from './containers/new';
 
 import * as reducers from './reducers';
 
@@ -35,6 +36,7 @@ render(
                 <Route path="register" component={RegisterContainer} />
                 <Route path="about" component={AboutContainer} />
                 <Route path=":cate" component={PostsContainer} />
+                <Route path="post/new" component={PublishArticleContainer} />
                 <Route path="*" component={NotFound} />
             </Route>
         </Router>

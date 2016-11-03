@@ -11,21 +11,21 @@ class RegisterContainer extends Component {
     }
 
     componentWillMount() {
-        const { isLogin } = this.props;
-        if (isLogin.status == 'success') {
+        const { status } = this.props;
+        if (status == 'success') {
             browserHistory.push('/');
         }
     }
 
     componentWillUpdate(nextProps, nextState) {
-        const { isLogin } = nextProps;
-        if (isLogin.status == 'success') {
+        const { status } = nextProps;
+        if (status == 'success') {
             browserHistory.push('/');
         }
     }
 
     render() {
-        const { handleSubmit, isLogin } = this.props;
+        const { handleSubmit } = this.props;
         return (
             <div className="col-md-4 col-md-offset-4 register">
                 <Register onSubmit={handleSubmit} />
@@ -35,13 +35,12 @@ class RegisterContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLogin: state.register.msg
+    status: state.sign.status,
+    user: state.sign.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-    handleSubmit: (values) => {
-        dispatch(register(values));
-    }
+    handleSubmit: values => dispatch(register(values)),
 });
 
 export default connect(

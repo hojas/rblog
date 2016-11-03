@@ -11,15 +11,15 @@ class LoginContainer extends Component {
     }
 
     componentWillMount() {
-        const { isLogin } = this.props;
-        if (isLogin.status == 'success') {
+        const { status } = this.props;
+        if (status == 'success') {
             browserHistory.push('/');
         }
     }
 
     componentWillUpdate(nextProps, nextState) {
-        const { isLogin } = nextProps;
-        if (isLogin.status == 'success') {
+        const { status } = nextProps;
+        if (status == 'success') {
             browserHistory.push('/');
         }
     }
@@ -35,13 +35,12 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLogin: state.login.msg
+    status: state.sign.status,
+    user: state.sign.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-    handleSubmit: (values) => {
-        dispatch(login(values));
-    }
+    handleSubmit: values => dispatch(login(values)),
 });
 
 export default connect(

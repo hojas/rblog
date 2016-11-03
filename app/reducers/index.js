@@ -1,58 +1,22 @@
-export const currentCate = (state = { currentCate: 'index' }, action) => {
-    switch (action.type) {
-        case 'SET_CURRENT_CATE':
-            return {
-                ...state,
-                currentCate: action.currentCate,
-            };
-        default:
-            return state;
-    }
+let signState = {
+    status: '',
+    msg: '',
+    user: '',
 };
-
-export const article = (state = {}, action) => {
+export const sign = (state = { signState }, action) => {
     switch (action.type) {
-        case 'GET_ARTICLE_SUCCESS':
+        case 'SIGN_ERROR':
             return {
                 ...state,
-                article: action.article,
-                loading: action.loading,
+                status: action.payload.status,
+                msg: action.payload.msg,
+                user: action.payload.user,
             };
-        case 'GET_ARTICLE_ERROR':
+        case 'GET_CURRENT_USER':
             return {
                 ...state,
-                loading: action.loading,
+                user: action.payload,
             };
-        case 'DELETE_ARTICLE':
-            return {
-                ...state,
-                article: '',
-            };
-        default:
-            return state;
-    }
-};
-
-export const posts = (state = {}, action) => {
-    switch (action.type) {
-        case 'GET_POSTS_SUCCESS':
-            return {
-                ...state,
-                posts: action.posts,
-                loading: action.loading,
-            };
-        case 'GET_POSTS_ERROR':
-            return {
-                ...state,
-                status: action.status,
-                lading: action.loading,
-            };
-        case 'DELETE_POSTS':
-            return {
-                state,
-                posts: [],
-                loading: action.loading,
-            }
         default:
             return state;
     }
@@ -70,32 +34,76 @@ export const cates = (state = {}, action) => {
     }
 };
 
-let msg = {
-    status: null,
-    msg: null,
-    user: null,
-};
-export const login = (state = { msg }, action) => {
+export const currentCate = (state = { currentCate: 'index' }, action) => {
     switch (action.type) {
-        case 'REQUEST_LOGIN':
+        case 'SET_CURRENT_CATE':
             return {
                 ...state,
-                msg: action.msg,
+                currentCate: action.currentCate,
             };
         default:
             return state;
     }
 };
 
-export const register = (state = { msg }, action) => {
+export const posts = (state = {}, action) => {
     switch (action.type) {
-        case 'REQUEST_REGISTER':
+        case 'GET_POSTS_SUCCESS':
             return {
                 ...state,
-                msg: action.msg,
+                posts: action.payload,
+            };
+        case 'GET_POSTS_ERROR':
+            return {
+                ...state,
+                status: action.status,
+            };
+        case 'DELETE_POSTS':
+            return {
+                state,
+                posts: [],
             };
         default:
             return state;
     }
 };
+
+export const article = (state = {}, action) => {
+    switch (action.type) {
+        case 'GET_ARTICLE_SUCCESS':
+            return {
+                ...state,
+                article: action.payload,
+            };
+        case 'GET_ARTICLE_ERROR':
+            return {
+                ...state,
+                status: action.status,
+            };
+        case 'DELETE_ARTICLE':
+            return {
+                ...state,
+                article: '',
+            };
+        default:
+            return state;
+    }
+};
+
+export const publishedArticle = (state = {}, action) => {
+    switch (action.type) {
+        case 'PUBLISH_ARTICLE':
+            return {
+                ...state,
+                article: action.payload,
+            };
+        case 'CLEAR_NEW_ARTICLE':
+            return {
+                ...state,
+                article: '',
+            };
+        default:
+            return state;
+    }
+}
 

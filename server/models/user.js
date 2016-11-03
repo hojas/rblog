@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     password: String,
 });
 
+// sign up
 userSchema.statics.add = async function(ctx, user) {
     let document = await this.findOne({ email: user.email });
     if (document) {
@@ -21,6 +22,7 @@ userSchema.statics.add = async function(ctx, user) {
     return { status: 'success', msg: '注册成功', user };
 };
 
+// sign in
 userSchema.statics.login = async function(ctx, email, password) {
     let user = await this.findOne({ email });
 

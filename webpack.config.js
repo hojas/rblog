@@ -2,8 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    //devtool: 'evil',
-    devtool: '#cheap-module-source-map',
+    devtool: 'evil',
+    //devtool: '#cheap-module-source-map',
     watch: false,
     entry: {
         app: './app/app.js',
