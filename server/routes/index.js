@@ -49,7 +49,12 @@ function routes(app) {
     router.get('/api/user', async (ctx, next) => {
         let user = ctx.session.user;
         if (user) {
-            ctx.body = user;
+            let data = {
+                status: 'success',
+                msg: '登陆成功',
+                user,
+            };
+            ctx.body = data;
         } else {
             ctx.body = null;
         }

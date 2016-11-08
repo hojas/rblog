@@ -1,58 +1,36 @@
-const signError = data => ({
-    type: 'SIGN_ERROR',
+// 登录或者注册
+const signUser = data => ({
+    type: 'SIGN_USER',
     payload: data,
 });
 
-const setCurrentUser = user => ({
-    type: 'GET_CURRENT_USER',
-    payload: user,
-});
+// 登录
+export const login = user => dispatch => post(dispatch, '/api/login', user);
 
-export const login = user => dispatch => {
-    return fetch('/api/login', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    })
-    .then(data => data.json())
-    .then(json => {
-        if (json.status == 'error') {
-            dispatch(signError(json));
-        } else {
-            dispatch(setCurrentUser(json.user));
-        }
-    });
-}
+// 注册
+export const register = user => dispatch => post(dispatch, '/api/register', user);
 
-export const register = user => dispatch => {
-    return fetch('/api/register', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    })
-    .then(data => data.json())
-    .then(json => {
-        if (json.status == 'error') {
-            dispatch(signError(json));
-        } else {
-            dispatch(setCurrentUser(json.user));
-        }
-    });
-}
-
+// 获取已登录用户
 export const getCurrentUser = () => dispatch => {
     return fetch('/api/user', {
         credentials: 'same-origin',
     })
     .then(data => data.json())
-    .then(json => dispatch(setCurrentUser(json)));
+    .then(json => dispatch(signUser(json)));
+};
+
+function post(dispatch, url, user) {
+    return fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+    })
+    .then(data => data.json())
+    .then(json => dispatch(signUser(json)))
+    .catch(err => dispatch(signUser(err)));
 }
 

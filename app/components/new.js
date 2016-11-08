@@ -18,14 +18,14 @@ class New extends Component {
                     <label>分类</label>
                     <Field component="select" className="form-control" name="category">
                         <option></option>
-                        {cates && cates.map(cate =>
-                            <option value={`${cate.name},${cate.url}`}>{cate.name}</option>
+                        {cates && cates.map((cate, i) =>
+                            <option key={i} value={`${cate.name},${cate.url}`}>{cate.name}</option>
                         )}
                     </Field>
                 </div>
                 <div className="form-group">
                     <label>标签</label>
-                    <Field type="text" component="input" className="form-control" name="tags" />
+                    <Field type="text" component="input" className="form-control" name="tags" placeholder="多个标签使用英文逗号隔开" />
                 </div>
                 <div className="form-group">
                     <label>正文</label>

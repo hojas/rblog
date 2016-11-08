@@ -1,26 +1,17 @@
 import { setCurrentCate } from './category';
 
-const requestArticle = () => ({
-    type: 'REQUEST_ARTICLE',
-});
-
+// 获取文章
 const getArticleSuccess = article => ({
     type: 'GET_ARTICLE_SUCCESS',
     payload: article,
 });
 
-const getArticleError = () => ({
-    type: 'GET_ARTICLE_ERROR',
-    status: 404,
-});
-
-export const deleteArticle = () => ({
-    type: 'DELETE_ARTICLE',
+// 清除文章
+export const clearArticle = () => ({
+    type: 'CLEAR_ARTICLE',
 });
 
 export const getArticle = id => dispatch => {
-    dispatch(requestArticle());
-
     return fetch(`/api/post/${id}`, {
         credentials: 'same-origin',
     })
@@ -28,15 +19,10 @@ export const getArticle = id => dispatch => {
     .then(json => {
         dispatch(setCurrentCate(json.category.url));
         dispatch(getArticleSuccess(json));
-    })
-    .catch(err => dispatch(getArticleError()));
-}
+    });
+};
 
-const requestPublish = data => ({
-    type: 'PUBLISH_ARTICLE',
-    payload: data.post,
-});
-
+// 发表新文章
 export const publishArticle = post => dispatch => {
     return fetch('/api/post/new', {
         method: 'POST',
@@ -48,10 +34,6 @@ export const publishArticle = post => dispatch => {
         body: JSON.stringify(post),
     })
     .then(data => data.json())
-    .then(json => dispatch(requestPublish(json)));
+    .then(json => dispatch(getArticleSuccess(json.post)));
 }
-
-export const clearNewArticle = () => ({
-    type: 'CLEAR_NEW_ARTICLE',
-});
 

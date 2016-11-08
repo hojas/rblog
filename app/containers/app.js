@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../components/header';
-import { getCates, getPosts, getCurrentUser, clearNewArticle } from '../actions';
+import { getCates, getPosts, getCurrentUser } from '../actions';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -13,7 +13,6 @@ class AppContainer extends Component {
         const { dispatch, getCates } = this.props;
         dispatch(getCates());
         dispatch(getCurrentUser());
-        dispatch(clearNewArticle());
     }
 
     render() {
@@ -36,8 +35,8 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    cates: state.cates.cates,
-    currentCate: state.currentCate.currentCate,
+    cates: state.cates.list,
+    currentCate: state.currentCate.data,
     user: state.sign.user,
 });
 
@@ -45,7 +44,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch,
     getCates,
     getCurrentUser,
-    clearNewArticle,
     fetchPosts: cate => dispatch(getPosts(cate)),
 });
 

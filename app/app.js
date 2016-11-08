@@ -2,10 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
 
 import NotFound from './components/notFound';
 import AppContainer from './containers/app';
@@ -16,15 +13,9 @@ import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
 import PublishArticleContainer from './containers/new';
 
-import * as reducers from './reducers';
+import configureStore from './store/configureStore';
 
-
-const reducer = combineReducers({
-    ...reducers,
-    form: formReducer,
-});
-const enhancer = compose(applyMiddleware(thunk));
-const store = createStore(reducer, enhancer);
+const store = configureStore();
 
 render(
     <Provider store={store}>

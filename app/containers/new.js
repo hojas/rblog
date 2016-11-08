@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import New from '../components/new';
-import { publishArticle } from '../actions';
+import { clearArticle, publishArticle } from '../actions';
 
 class PublishArticleContainer extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentWillMount() {
+        const { dispatch, clearArticle } = this.props;
+        dispatch(clearArticle());
+    }
+
     componentWillUpdate(nextProps, nextState) {
-        const { post } = nextProps;
-        if (post) {
+        const { article } = nextProps;
+        if (article) {
             browserHistory.push(`/${post.id}.html`);
         }
     }
@@ -30,11 +35,13 @@ class PublishArticleContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    cates: state.cates.cates,
-    post: state.publishedArticle.article,
+    cates: state.cates.list,
+    article: state.article.data,
 });
 
 const mapDispatchToProps = dispatch => ({
+    dispatch,
+    clearArticle,
     handleSubmit: values => dispatch(publishArticle(values)),
 });
 

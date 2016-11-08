@@ -39,3 +39,4 @@ jspm_packages
 
 static/js
 dest
+*.swp

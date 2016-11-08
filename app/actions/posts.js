@@ -1,26 +1,17 @@
 import { setCurrentCate } from './category';
 
-const requestPosts = () => ({
-    type: 'REQUEST_POSTS',
-});
-
+// 获取文章列表
 const getPostsSuccess = (posts) => ({
     type: 'GET_POSTS_SUCCESS',
     payload: posts,
 });
 
-const getPostsError = () => ({
-    type: 'GET_POSTS_ERROR',
-    status: 404,
-});
-
-export const deletePosts = () => ({
-    type: 'DELETE_POSTS',
+// 清除文章列表
+export const clearPosts = () => ({
+    type: 'CLEAR_POSTS',
 });
 
 export const getPosts = cate => dispatch => {
-    dispatch(requestPosts());
-
     let url;
     if (cate) {
         url = `/api/cate/${cate}`;
@@ -36,7 +27,6 @@ export const getPosts = cate => dispatch => {
     .then(json => {
         dispatch(setCurrentCate(cate));
         dispatch(getPostsSuccess(json));
-    })
-    .catch(err => dispatch(getPostsError()));
+    });
 }
 

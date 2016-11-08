@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Article from '../components/article';
-import { getArticle, deleteArticle } from '../actions';
+import { getArticle, clearArticle } from '../actions';
 
 class ArticleContainer extends Component {
     constructor(props) {
@@ -15,8 +15,8 @@ class ArticleContainer extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, deleteArticle } = this.props;
-        dispatch(deleteArticle());
+        const { dispatch, clearArticle } = this.props;
+        dispatch(clearArticle());
     }
 
     render() {
@@ -30,13 +30,13 @@ class ArticleContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    article: state.article.article,
+    article: state.article.data,
 });
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
     getArticle,
-    deleteArticle,
+    clearArticle,
 });
 
 export default connect(

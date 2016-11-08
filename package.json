@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "rm -rf static/css/dest && gulp",
     "clean:app": "rm -rf static/js",
-    "build:app": "npm run clean:app && webpack",
+    "build:app": "npm run clean:app && webpack --config webpack.config.prod.js",
+    "build:app:dev": "npm run clean:app && webpack --config webpack.config.dev.js",
     "clean:server": "rm -rf build && mkdir build",
     "build:server": "npm run clean:server && babel -d ./build ./server -s",
     "build": "npm run build:server && npm run build:css && npm run build:app",
@@ -51,6 +52,7 @@
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-transform-react-jsx-source": "^6.9.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
