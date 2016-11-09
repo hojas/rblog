@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
 import marked from 'marked';
 import hljs from 'highlight.js';
 
@@ -28,6 +29,7 @@ const postSchema = new mongoose.Schema({
     tags: { type: Array, default: [] },
     views: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now },
+    formatCreatedAt: String,
 });
 
 //get get posts by category
@@ -67,6 +69,12 @@ postSchema.statics.add = async function(post) {
 // get marked article content
 postSchema.virtual('marked').get(function() {
     return marked(this.content);
+});
+
+// pretty createdAt
+postSchema.virtual('prettyCreatedAt').get(function() {
+    moment.locale('zh-cn');
+    return moment(this.createdAt).format('ll');
 });
 
 let Post = mongoose.model('Post', postSchema);

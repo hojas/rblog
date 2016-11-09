@@ -30,5 +30,20 @@
             }
         }
     }
+    .article-meta {
+        padding: 20px 0;
+        margin: 20px 0;
+
+        > span {
+            display: inline-block;
+            margin-right: 10px;
+            color: #6f6f6f;
+            font-size: 14px;
+
+            .fa {
+                margin-right: 4px;
+            }
+        }
+    }
 }
 

@@ -87,6 +87,7 @@ function routes(app) {
         let post = await Post.findById(id);
 
         post.content = post.marked;
+        post.formatCreatedAt = post.prettyCreatedAt;
         ctx.body = post;
     });
     // save a new post
