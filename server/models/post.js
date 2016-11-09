@@ -32,7 +32,7 @@ const postSchema = new mongoose.Schema({
     formatCreatedAt: String,
 });
 
-//get get posts by category
+// get posts by category
 postSchema.statics.findByCate = async function(cate) {
     let current_cate = cate
         ? { category: { name: cate.name, url: cate.url }}
@@ -40,6 +40,12 @@ postSchema.statics.findByCate = async function(cate) {
 
     let posts = await this.find(current_cate).sort({ createdAt: -1 });
 
+    return posts;
+};
+
+// get posts by tag
+postSchema.statics.findByTag = async function(tag) {
+    let posts = await this.find({ tags: { $in: [tag] } }).sort({ createdAt: -1 });
     return posts;
 };
 

@@ -1,7 +1,7 @@
 import { setCurrentCate } from './category';
 
 // 获取文章列表
-const getPostsSuccess = (posts) => ({
+const getPostsSuccess = posts => ({
     type: 'GET_POSTS_SUCCESS',
     payload: posts,
 });
@@ -11,10 +11,12 @@ export const clearPosts = () => ({
     type: 'CLEAR_POSTS',
 });
 
-export const getPosts = cate => dispatch => {
+export const getPosts = (type, data) => dispatch => {
     let url;
-    if (cate) {
-        url = `/api/cate/${cate}`;
+    let cate;
+    if (type && data) {
+        url = `/api/${type}/${data}`;
+        cate = type == 'cate' ? type : 'index';
     } else {
         url = '/api/posts';
         cate = 'index';

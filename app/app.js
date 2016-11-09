@@ -28,6 +28,7 @@ render(
                 <Route path="about" component={AboutContainer} />
                 <Route path=":cate" component={PostsContainer} />
                 <Route path="post/new" component={PublishArticleContainer} />
+                <Route path="tag/:tag" component={PostsContainer} />
                 <Route path="*" component={NotFound} />
             </Route>
         </Router>

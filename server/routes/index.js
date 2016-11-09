@@ -3,6 +3,7 @@ import {
     User,
     Category,
     Post,
+    Tag,
 } from '../models';
 
 const router = koaRouter();
@@ -75,6 +76,17 @@ function routes(app) {
         } else {
             ctx.body = category;
         }
+    });
+    // get posts by tag
+    router.get('/api/tag/:name', async (ctx, next) => {
+        /*
+        let name = ctx.params.name;
+        let tag = new Tag({ name });
+        let msg = await Tag.add(tag);
+        */
+        let tag = ctx.params.name;
+        let posts = await Post.findByTag(tag);
+        ctx.body = posts;
     });
     // get all posts
     router.get('/api/posts', async (ctx, next) => {

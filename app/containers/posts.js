@@ -11,7 +11,16 @@ class PostsContainer extends Component {
 
     componentWillMount() {
         const { params, dispatch, getPosts } = this.props;
-        dispatch(getPosts(params.cate));
+        let cate = params.cate;
+        let tag = params.tag;
+
+        if (cate) {
+            dispatch(getPosts('cate', cate));
+        } else if (tag) {
+            dispatch(getPosts('tag', tag));
+        } else {
+            dispatch(getPosts());
+        }
     }
 
     componentDidMount() {
