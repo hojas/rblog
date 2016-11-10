@@ -43,6 +43,9 @@ const Header = ({ cates, currentCate, getPosts, user }) => (
                     <li>
                         <a>Hi，{user.username}</a>
                     </li>
+                    <li>
+                        <Link to={'/logout'}>退出</Link>
+                    </li>
                 </ul>
                 ||
                 <ul className="nav navbar-nav navbar-right">

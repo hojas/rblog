@@ -6,17 +6,13 @@ const getPostsSuccess = posts => ({
     payload: posts,
 });
 
-// 清除文章列表
-export const clearPosts = () => ({
-    type: 'CLEAR_POSTS',
-});
-
 export const getPosts = (type, data) => dispatch => {
     let url;
     let cate;
+
     if (type && data) {
         url = `/api/${type}/${data}`;
-        cate = type == 'cate' ? type : 'index';
+        cate = type === 'cate' ? data : 'index';
     } else {
         url = '/api/posts';
         cate = 'index';

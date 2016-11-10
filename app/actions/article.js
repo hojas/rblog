@@ -6,11 +6,6 @@ const getArticleSuccess = article => ({
     payload: article,
 });
 
-// 清除文章
-export const clearArticle = () => ({
-    type: 'CLEAR_ARTICLE',
-});
-
 export const getArticle = id => dispatch => {
     return fetch(`/api/post/${id}`, {
         credentials: 'same-origin',

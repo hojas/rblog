@@ -48,11 +48,6 @@ export const posts = (state = {}, action) => {
                 ...state,
                 list: action.payload,
             };
-        case 'CLEAR_POSTS':
-            return {
-                ...state,
-                list: [],
-            };
         default:
             return state;
     }
@@ -64,11 +59,6 @@ export const article = (state = {}, action) => {
             return {
                 ...state,
                 data: action.payload,
-            };
-        case 'CLEAR_ARTICLE':
-            return {
-                ...state,
-                data: '',
             };
         default:
             return state;

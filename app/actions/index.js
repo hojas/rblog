@@ -1,5 +1,5 @@
-export { getArticle, clearArticle, publishArticle } from './article';
-export { getPosts, clearPosts } from './posts';
+export { getArticle, publishArticle } from './article';
+export { getPosts } from './posts';
 export { getCates, setCurrentCate } from './category';
-export { login, register, getCurrentUser } from './user';
+export { login, register, logout, getCurrentUser } from './user';
 

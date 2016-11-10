@@ -8,6 +8,7 @@ import NotFound from './components/notFound';
 import AppContainer from './containers/app';
 import LoginContainer from './containers/login';
 import RegisterContainer from './containers/register';
+import LogoutContainer from './containers/logout';
 import AboutContainer from './containers/about';
 import PostsContainer from './containers/posts';
 import ArticleContainer from './containers/article';
@@ -25,6 +26,7 @@ render(
                 <Route path=":id.html" component={ArticleContainer} />
                 <Route path="login" component={LoginContainer} />
                 <Route path="register" component={RegisterContainer} />
+                <Route path="logout" component={LogoutContainer} />
                 <Route path="about" component={AboutContainer} />
                 <Route path=":cate" component={PostsContainer} />
                 <Route path="post/new" component={PublishArticleContainer} />

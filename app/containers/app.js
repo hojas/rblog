@@ -9,7 +9,7 @@ class AppContainer extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { dispatch, getCates } = this.props;
         dispatch(getCates());
         dispatch(getCurrentUser());
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch,
     getCates,
     getCurrentUser,
-    fetchPosts: cate => dispatch(getPosts(cate)),
+    fetchPosts: cate => dispatch(getPosts('cate', cate)),
 });
 
 export default connect(

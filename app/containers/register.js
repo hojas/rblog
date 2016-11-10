@@ -10,7 +10,7 @@ class RegisterContainer extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { status } = this.props;
         if (status == 'success') {
             browserHistory.push('/');

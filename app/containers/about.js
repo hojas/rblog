@@ -9,7 +9,7 @@ class AboutContainer extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { dispatch, setCurrentCate } = this.props;
         dispatch(setCurrentCate('about'));
     }

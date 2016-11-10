@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Posts from '../components/posts';
-import { getArticle, getPosts, clearPosts } from '../actions';
+import { getArticle, getPosts } from '../actions';
 
 class PostsContainer extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { params, dispatch, getPosts } = this.props;
         let cate = params.cate;
         let tag = params.tag;
@@ -21,11 +21,6 @@ class PostsContainer extends Component {
         } else {
             dispatch(getPosts());
         }
-    }
-
-    componentDidMount() {
-        const { dispatch, clearPosts } = this.props;
-        dispatch(clearPosts());
     }
 
     render() {
@@ -49,7 +44,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     dispatch,
     getPosts,
-    clearPosts,
     fetchArticle: id => dispatch(getArticle(id)),
 });
 

@@ -10,6 +10,13 @@ export const login = user => dispatch => post(dispatch, '/api/login', user);
 // 注册
 export const register = user => dispatch => post(dispatch, '/api/register', user);
 
+// 退出
+export const logout = () => dispatch => {
+    return fetch('/api/logout')
+        .then(data => data.json())
+        .then(json => dispatch(signUser(json)));
+}
+
 // 获取已登录用户
 export const getCurrentUser = () => dispatch => {
     return fetch('/api/user', {
@@ -27,7 +34,7 @@ function post(dispatch, url, user) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
+       body: user ? JSON.stringify(user) : JSON.stringify({}),
     })
     .then(data => data.json())
     .then(json => dispatch(signUser(json)))
