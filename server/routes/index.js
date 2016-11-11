@@ -121,6 +121,11 @@ function routes(app) {
             tags,
         });
 
+        // save tags to mongodb
+        let oTags = tags.map(t => new Tag({ name: t }));
+        let pTags = oTags.map(t => Tag.add(t));
+        await Promise.all(pTags);
+
         ctx.body = await Post.add(post);
     });
 
