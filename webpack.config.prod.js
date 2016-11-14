@@ -2,11 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'evil',
-    //devtool: '#cheap-module-source-map',
+    devtool: '#cheap-module-source-map',
     watch: false,
     entry: {
-        app: './app/app.js',
+        app: './src/app/app.js',
         libs: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-form'],
     },
     output: {
@@ -17,7 +16,7 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             loader: 'babel',
-            include: path.resolve('./app'),
+            include: path.resolve('./src/app'),
         }],
     },
     plugins: [
