@@ -57,7 +57,7 @@ function routes(app) {
             };
             ctx.body = data;
         } else {
-            ctx.body = null;
+            ctx.body = {};
         }
     });
     // get all categories
