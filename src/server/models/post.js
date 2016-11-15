@@ -54,6 +54,8 @@ postSchema.statics.findById = async function(id) {
     let post = await this.findOne({ id });
 
     if (post) {
+        post.views++;
+        post.save();
         return post;
     }
     return { status: 'error', msg: '没有找到相关文章' };
