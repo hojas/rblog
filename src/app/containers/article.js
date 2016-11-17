@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Article from '../components/article';
-import { getArticle } from '../actions';
+import { prefix, getArticle } from '../actions';
 
 class ArticleContainer extends Component {
     constructor(props) {
         super(props);
+    }
+
+    static fetchData(dispatch, params) {
+        return dispatch(getArticle(params.id, prefix));
     }
 
     componentDidMount() {

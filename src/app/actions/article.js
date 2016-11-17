@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import { setCurrentCate } from './category';
 
 // 获取文章
@@ -6,8 +7,8 @@ const getArticleSuccess = article => ({
     payload: article,
 });
 
-export const getArticle = id => dispatch => {
-    return fetch(`/api/post/${id}`, {
+export const getArticle = (id, prefix = '') => dispatch => {
+    return fetch(`${prefix}/api/post/${id}`, {
         credentials: 'same-origin',
     })
     .then(data => data.json())

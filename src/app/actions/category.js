@@ -1,11 +1,13 @@
+import fetch from 'isomorphic-fetch';
+
 // 获取所有分类
 const getCatesSuccess = cates => ({
     type: 'GET_CATES_SUCCESS',
     payload: cates,
 });
 
-export const getCates = () => dispatch => {
-    return fetch('/api/cates', {
+export const getCates = (prefix = '') => dispatch => {
+    return fetch(`${prefix}/api/cates`, {
         credentials: 'same-origin',
     })
     .then(data => data.json())

@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import { setCurrentCate } from './category';
 
 // 获取文章列表
@@ -6,15 +7,15 @@ const getPostsSuccess = posts => ({
     payload: posts,
 });
 
-export const getPosts = (type, data) => dispatch => {
+export const getPosts = (type, data, prefix = '') => dispatch => {
     let url;
     let cate;
 
     if (type && data) {
-        url = `/api/${type}/${data}`;
+        url = `${prefix}/api/${type}/${data}`;
         cate = type === 'cate' ? data : 'index';
     } else {
-        url = '/api/posts';
+        url = `${prefix}/api/posts`;
         cate = 'index';
     }
 

@@ -1,7 +1,7 @@
 {
     apps: [{
         name: "blog",
-        script: "./build/app.js",
+        script: "./build/server/app.js",
         error_file: "./logs/err.log",
         out_file: "./logs/out.log",
         merge_logs: true,

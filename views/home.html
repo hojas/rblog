@@ -4,16 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>前端日志网</title>
+    <meta name="description" content="前端日志网专注于前端开发和Node.js开发，是一个致力于分享JavaScript开发技术、CSS开发技术等前端开发技术和Node.js开发技术的网站。">
+    <meta name="keywords" content="前端开发,JavaScript,CSS,Node.js,rust">
+    <title>前端日志网 - 专注前端开发和Node.js开发，分享前端开发技术和Node.js开发技术</title>
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.7.0/styles/monokai-sublime.min.css" rel="stylesheet">
     <link href="/css/dest/app.css" rel="stylesheet">
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">{{ body|safe }}</div>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    window.__REDUX_STATE__= {{ state|safe }};
+    </script>
     <script src="/js/libs.js"></script>
     <script src="/js/app.js"></script>
 </body>

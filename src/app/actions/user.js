@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 // 登录或者注册
 const signUser = data => ({
     type: 'SIGN_USER',
@@ -18,8 +20,8 @@ export const logout = () => dispatch => {
 }
 
 // 获取已登录用户
-export const getCurrentUser = () => dispatch => {
-    return fetch('/api/user', {
+export const getCurrentUser = (prefix = '') => dispatch => {
+    return fetch(`${prefix}/api/user`, {
         credentials: 'same-origin',
     })
     .then(data => data.json())

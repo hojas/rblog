@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Posts from '../components/posts';
-import { getArticle, getPosts } from '../actions';
+import { prefix, getArticle, getPosts } from '../actions';
 
 class PostsContainer extends Component {
     constructor(props) {
         super(props);
+    }
+
+    static fetchData(dispatch, params) {
+        let cate = params.cate;
+        let tag = params.tag;
+
+        if (cate) {
+            return dispatch(getPosts('cate', cate, prefix));
+        }
+        if (tag) {
+            return dispatch(getPosts('tag', tag, prefix));
+        }
+        return dispatch(getPosts(null, null, prefix));
     }
 
     componentDidMount() {

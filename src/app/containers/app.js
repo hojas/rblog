@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Header from '../components/header';
-import { getCates, getPosts, getCurrentUser } from '../actions';
+import { prefix, getCates, getPosts, getCurrentUser } from '../actions';
 
 class AppContainer extends Component {
     constructor(props) {
         super(props);
+    }
+
+    static fetchData(dispatch) {
+        return [
+            dispatch(getCates(prefix)),
+            dispatch(getCurrentUser(prefix)),
+        ];
     }
 
     componentDidMount() {

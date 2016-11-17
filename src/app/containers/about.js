@@ -9,6 +9,10 @@ class AboutContainer extends Component {
         super(props);
     }
 
+    static fetchData(dispatch) {
+        return dispatch(setCurrentCate('about'));
+    }
+
     componentDidMount() {
         const { dispatch, setCurrentCate } = this.props;
         dispatch(setCurrentCate('about'));

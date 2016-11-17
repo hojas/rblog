@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import views from 'koa-nunjucks-next';
 
 import routes from './routes';
+import { renderReact } from './render';
 
 const app = new Koa();
 
@@ -23,9 +24,9 @@ app.use(bodyParser());
 app.keys = ['forever'];
 app.use(convert(session(app)));
 
-app.use(views('../views'));
+app.use(views('../../views'));
 app.use(async (ctx, next) => {
-    await send(ctx, ctx.path, { root: path.resolve(__dirname, '../static') });
+    await send(ctx, ctx.path, { root: path.resolve(__dirname, '../../static') });
 
     if (ctx.status === 404) {
         await next();
@@ -33,6 +34,7 @@ app.use(async (ctx, next) => {
 });
 
 routes(app);
+app.use(renderReact);
 
 app.listen(8080, '127.0.0.1');
 

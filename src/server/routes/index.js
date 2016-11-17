@@ -12,11 +12,6 @@ function routes(app) {
     app.use(router.routes())
         .use(router.allowedMethods());
 
-    // render home page
-    router.get('/', async (ctx, next) => {
-        await ctx.render('home');
-    });
-
     // login
     router.post('/api/login', async (ctx, next) => {
         let email = ctx.request.body.email;
@@ -127,11 +122,6 @@ function routes(app) {
         await Promise.all(pTags);
 
         ctx.body = await Post.add(post);
-    });
-
-    // render home page again
-    router.get('*', async (ctx, next) => {
-        await ctx.render('home');
     });
 }
 
