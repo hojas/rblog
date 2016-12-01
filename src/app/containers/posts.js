@@ -23,16 +23,18 @@ class PostsContainer extends Component {
     }
 
     componentDidMount() {
-        const { params, dispatch, getPosts } = this.props;
+        const { params, dispatch, getPosts, posts } = this.props;
         let cate = params.cate;
         let tag = params.tag;
 
-        if (cate) {
-            dispatch(getPosts('cate', cate));
-        } else if (tag) {
-            dispatch(getPosts('tag', tag));
-        } else {
-            dispatch(getPosts());
+        if (!posts || !posts.length) {
+            if (cate) {
+                dispatch(getPosts('cate', cate));
+            } else if (tag) {
+                dispatch(getPosts('tag', tag));
+            } else {
+                dispatch(getPosts());
+            }
         }
     }
 

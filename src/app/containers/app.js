@@ -11,15 +11,15 @@ class AppContainer extends Component {
     }
 
     static fetchData(dispatch) {
-        return [
-            dispatch(getCates(prefix)),
-            dispatch(getCurrentUser(prefix)),
-        ];
+        return dispatch(getCates(prefix));
     }
 
     componentDidMount() {
-        const { dispatch, getCates } = this.props;
-        dispatch(getCates());
+        const { dispatch, getCates, cates } = this.props;
+
+        if (!cates.length) {
+            dispatch(getCates());
+        }
         dispatch(getCurrentUser());
     }
 

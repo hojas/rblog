@@ -14,8 +14,11 @@ class ArticleContainer extends Component {
     }
 
     componentDidMount() {
-        const { params, dispatch, getArticle } = this.props;
-        dispatch(getArticle(params.id));
+        const { params, dispatch, getArticle, article } = this.props;
+
+        if (!article) {
+            dispatch(getArticle(params.id));
+        }
     }
 
     render() {
