@@ -17,7 +17,7 @@ export const logout = () => dispatch => {
     return fetch('/api/logout')
         .then(data => data.json())
         .then(json => dispatch(signUser(json)));
-}
+};
 
 // 获取已登录用户
 export const getCurrentUser = (prefix = '') => dispatch => {
@@ -36,7 +36,7 @@ function post(dispatch, url, user) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-       body: user ? JSON.stringify(user) : JSON.stringify({}),
+        body: user ? JSON.stringify(user) : JSON.stringify({}),
     })
     .then(data => data.json())
     .then(json => dispatch(signUser(json)))

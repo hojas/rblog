@@ -36,5 +36,11 @@ app.use(async (ctx, next) => {
 routes(app);
 app.use(renderReact);
 
-app.listen(8080, '127.0.0.1');
+// for production
+// app.listen(8080, '127.0.0.1');
+
+// for dev
+app.listen(8082, () => {
+    console.log('running on 8082');
+});
 

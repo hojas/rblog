@@ -29,6 +29,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-    mapDispatchToProps,
+    mapDispatchToProps
 )(AboutContainer);
 

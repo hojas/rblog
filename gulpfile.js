@@ -24,7 +24,7 @@ gulp.task('css', function() {
 
     return gulp.src('./static/css/app.css')
         .pipe(postcss(processors))
-        .pipe(gulp.dest('./static/css/dest'));
+        .pipe(gulp.dest('./static/css/dist'));
 });
 
 gulp.task('default', ['css']);
