@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
+    is_admin: { type: Boolean, value: false },
 });
 
 // sign up
@@ -15,9 +16,8 @@ userSchema.statics.add = async function(ctx, user) {
     }
 
     user.password = md5(user.password);
-    let u = await user.save();
+    await user.save();
     user.password = null;
-    delete user.password;
     ctx.session.user = user;
     return { status: 'success', msg: '注册成功', user };
 };
@@ -29,7 +29,6 @@ userSchema.statics.login = async function(ctx, email, password) {
     if (user) {
         if (md5(password) === user.password) {
             user.password = null;
-            delete user.password;
             ctx.session.user = user;
 
             return { status: 'success', msg: '登录成功', user };

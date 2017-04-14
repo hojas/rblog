@@ -18,27 +18,22 @@ const Header = ({ cates, currentCate, getPosts, user }) => (
                     <li className={currentCate === 'index' ? 'active': ''}>
                         <Link onClick={() => getPosts()} to="/">首页</Link>
                     </li>
-                    <li className={currentCate === 'frontend' ? 'active' : ''}>
-                        <Link onClick={() => getPosts('frontend')} to={'/frontend'}>前端</Link>
-                    </li>
-                    <li className={currentCate === 'nodejs' ? 'active' : ''}>
-                        <Link onClick={() => getPosts('nodejs')} to={'/nodejs'}>Node.js</Link>
-                    </li>
-                    <li className={currentCate === 'about' ? 'active' : ''}>
-                        <Link to={'/about'}>关于</Link>
-                    </li>
-                    {/*
                     {cates && cates.length && cates.map((cate, i) =>
                         <li className={currentCate === cate.url ? 'active' : ''} key={i}>
                             <Link onClick={() => getPosts(cate.url)} to={`/${cate.url}`}>{cate.name}</Link>
                         </li>
-                    )}
-                    */}
+                    ) || ''}
+                    <li className={currentCate === 'about' ? 'active' : ''}>
+                        <Link to={'/about'}>关于</Link>
+                    </li>
                 </ul>
                 {user &&
                 <ul className="nav navbar-nav navbar-right">
                     <li>
                         <Link to={'/post/new'}>写文章</Link>
+                    </li>
+                    <li>
+                        <Link to={'/admin'}>管理</Link>
                     </li>
                     <li>
                         <a>Hi，{user.username}</a>
@@ -52,11 +47,9 @@ const Header = ({ cates, currentCate, getPosts, user }) => (
                     <li>
                         <Link to={'/login'}>登录</Link>
                     </li>
-                    {/*
                     <li>
                         <Link to={'/register'}>注册</Link>
                     </li>
-                    */}
                 </ul>
                 }
             </div>

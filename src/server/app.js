@@ -15,7 +15,7 @@ const app = new Koa();
 
 // Use native promises
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/kblog');
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'));
 
 app.use(bodyParser());
@@ -36,11 +36,5 @@ app.use(async (ctx, next) => {
 routes(app);
 app.use(renderReact);
 
-// for production
-// app.listen(8080, '127.0.0.1');
-
-// for dev
-app.listen(8082, () => {
-    console.log('running on 8082');
-});
+app.listen(8080, () => console.log('Server is running on 8080'));
 

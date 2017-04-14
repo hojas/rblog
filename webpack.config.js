@@ -12,8 +12,8 @@ module.exports = env => {
             vendor: ['react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-form'],
         },
         output: {
-            publicPath: '/js/',
-            path: resolve(__dirname, 'static/js'),
+            publicPath: '/dist/js/',
+            path: resolve(__dirname, 'static/dist/js'),
             filename: '[name].js',
             chunkFilename: '[id].js',
             pathinfo: !env.prod,
