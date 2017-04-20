@@ -16,30 +16,8 @@ A blog build with Koa2 and React.
 
 ## Deploy
 
-1. install npm packages
-
-  ```
-  $ npm install
-  ```
-
-2. build app and server
-
-  ```
-  $ npm run build
-  ```
-
-3. run app
-
-  ```
-  $ npm run pm2:start
-  ```
-
-4. deploy Nginx
-
-  Install Nginx, and then copy `rblog/nginx.conf` to `/etc/nginx/conf.d/`.
-
-  Restart Nginx:
-
-  ```
-  $ sudo service nginx restart
-  ```
+1. Clone project: git clone https://github.com/hojas/rblog.git
+2. Install docker and docker-compose, read more
+3. Run docker service: sudo service docker start
+4. Build docker image: docker-compose build
+5. Run app in docker: docker-compose up -d
