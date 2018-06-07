@@ -1,8 +1,0 @@
-{
-    "users": [{
-        "username": "admin",
-        "email": "admin@rblog.com",
-        "password": "admin",
-        "is_admin": true
-    }]
-}
