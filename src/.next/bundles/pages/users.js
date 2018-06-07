@@ -1,1 +1,0 @@
-module.exports=__NEXT_REGISTER_PAGE("/users",function(){var e=webpackJsonp([6],{803:function(e,t,r){e.exports=r(804)},804:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});var u=r(0);var n=r.n(u);t["default"]=function(){return n.a.createElement("div",null,"users")}}},[803]);return{page:e.default}});

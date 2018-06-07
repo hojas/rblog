@@ -41,4 +41,5 @@ jspm_packages
 
 dist
 dest
+.next
 
