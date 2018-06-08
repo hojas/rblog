@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const { md5, isAdmin, save, findOne } = require('./utils')
+const { md5, isAdmin, save, findOne, findAll } = require('./utils')
 
 module.exports = class UserController {
   static async signIn(ctx) {

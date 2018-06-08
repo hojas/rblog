@@ -6,7 +6,7 @@ const logger = require('koa-logger')
 const Router = require('koa-router')
 const next = require('next')
 
-const connectMongo = require('./db')
+const { connectMongo, initAdmin } = require('./db')
 const routers = require('./routers')
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -16,6 +16,7 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(async () => {
   await connectMongo()
+  initAdmin()
 
   const server = new Koa()
   server.keys = ['huppyrblog']
