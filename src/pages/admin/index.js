@@ -32,6 +32,7 @@ export default class UserManagement extends Component {
 
   async componentDidMount() {
     const res = await ajax('users/all')
+
     if (res.data.ok) {
       this.setState({
         users: res.data.users,
@@ -41,7 +42,7 @@ export default class UserManagement extends Component {
 
   render() {
     const users = this.state.users
-    console.log(users)
+
     return (
       <Layout>
         <Table columns={columns} dataSource={users} />

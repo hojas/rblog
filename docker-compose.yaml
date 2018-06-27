@@ -28,4 +28,4 @@ services:
         volumes:
             - ./:/opt/app
         working_dir: /opt/app
-        command: sh -c 'npm start'
+        command: sh -c 'npm i && npm run dev'

@@ -65,12 +65,11 @@ module.exports = class UserController {
     }
   }
 
-  static async findAll(ctx) {
+  static async findAll(ctx, next) {
     if (isAdmin(ctx)) {
       ctx.body = await findAll(User, 'users')
     } else {
-      ctx.status = 404
-      ctx.body = { message: 'Page Not Found' }
+      await next()
     }
   }
 }
