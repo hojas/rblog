@@ -16,7 +16,7 @@ export default class CateModal extends Component {
           handleInput={this.props.handleInput}
           handleSubmit={this.props.handleSubmit}
           hideModal={this.props.hideModal}
-        ></CateForm>
+        />
       </Modal>
     )
   }

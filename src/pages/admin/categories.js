@@ -4,25 +4,33 @@ import Layout from '../../components/AdminLayout'
 import CateModal from '../../components/admin/CateModal'
 import ajax from '../../ajax'
 
-const columns = _this => ([{
-  title: '名称',
-  dataIndex: 'name',
-  key: 'name',
-}, {
-  title: 'URL',
-  dataIndex: 'url',
-  key: 'url',
-}, {
-  title: '操作',
-  key: 'action',
-  render: (text, record) => (
-    <span>
-      <a href="javascript:;" onClick={() => _this.toggleUpdateModal(record)}>更改</a>
-      <Divider type="vertical" />
-      <a href="javascript:;" onClick={() => _this.toggleRemoveModal(record)}>删除</a>
-    </span>
-  )
-}])
+const columns = _this => [
+  {
+    title: '名称',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'URL',
+    dataIndex: 'url',
+    key: 'url',
+  },
+  {
+    title: '操作',
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <a href="javascript:;" onClick={() => _this.toggleUpdateModal(record)}>
+          更改
+        </a>
+        <Divider type="vertical" />
+        <a href="javascript:;" onClick={() => _this.toggleRemoveModal(record)}>
+          删除
+        </a>
+      </span>
+    ),
+  },
+]
 
 export default class UserManagement extends Component {
   state = {
@@ -39,14 +47,14 @@ export default class UserManagement extends Component {
     })
   }
 
-  toggleUpdateModal = (cate=this.state.cate) => {
+  toggleUpdateModal = (cate = this.state.cate) => {
     this.setState({
       visibleUpdateModal: !this.state.visibleUpdateModal,
       cate,
     })
   }
 
-  toggleRemoveModal = (cate=this.state.cate) => {
+  toggleRemoveModal = (cate = this.state.cate) => {
     this.setState({
       visibleRemoveModal: !this.state.visibleRemoveModal,
       cate,
@@ -83,7 +91,7 @@ export default class UserManagement extends Component {
     const res = await ajax.delete('categories', {
       params: {
         ...this.state.cate,
-      }
+      },
     })
     if (res.data.ok) {
       await this.getCates()
@@ -100,7 +108,7 @@ export default class UserManagement extends Component {
       cate: {
         ...this.state.cate,
         [name]: value,
-      }
+      },
     })
   }
 
@@ -133,7 +141,7 @@ export default class UserManagement extends Component {
           hideModal={this.toggleAddModal}
           handleInput={this.handleInput}
           handleSubmit={this.add}
-        ></CateModal>
+        />
         <CateModal
           title="更新分类"
           visible={this.state.visibleUpdateModal}
@@ -141,7 +149,7 @@ export default class UserManagement extends Component {
           hideModal={this.toggleUpdateModal}
           handleInput={this.handleInput}
           handleSubmit={this.update}
-        ></CateModal>
+        />
         <CateModal
           title="删除分类"
           visible={this.state.visibleRemoveModal}
@@ -149,7 +157,7 @@ export default class UserManagement extends Component {
           hideModal={this.toggleRemoveModal}
           handleInput={null}
           handleSubmit={this.remove}
-        ></CateModal>
+        />
       </Layout>
     )
   }

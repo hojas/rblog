@@ -3,22 +3,26 @@ import { Table } from 'antd'
 import Layout from '../../components/AdminLayout'
 import ajax from '../../ajax'
 
-const columns = [{
-  title: '用户名',
-  dataIndex: 'username',
-  key: 'username',
-}, {
-  title: '邮箱',
-  dataIndex: 'email',
-  key: 'email',
-}, {
-  title: '角色',
-  dataIndex: 'isAdmin',
-  key: 'isAdmin',
-  render: (text, record) => (
-    <span>{record.isAdmin ? '管理员' : '普通用户'}</span>
-  )
-}]
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    key: 'username',
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: '角色',
+    dataIndex: 'isAdmin',
+    key: 'isAdmin',
+    render: (text, record) => (
+      <span>{record.isAdmin ? '管理员' : '普通用户'}</span>
+    ),
+  },
+]
 
 export default class UserManagement extends Component {
   constructor(props) {

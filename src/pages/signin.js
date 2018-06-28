@@ -42,10 +42,7 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <Layout
-        user={this.state.user}
-        logout={this.logout}
-      >
+      <Layout user={this.state.user} logout={this.logout}>
         <Form className={css.form} onSubmit={this.signIn}>
           <FormGroup>
             <Label>邮箱</Label>

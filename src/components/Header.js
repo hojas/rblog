@@ -72,7 +72,9 @@ export default class MainNavbar extends Component {
                 <a className="nav-link">管理</a>
               </Link>
             </NavItem>
-          ) : ''}
+          ) : (
+            ''
+          )}
           <NavItem>
             <NavLink href="#" onClick={this.logout}>
               退出
@@ -98,13 +100,13 @@ export default class MainNavbar extends Component {
   }
 
   renderCates() {
-    return this.state.cates.map(cate =>
+    return this.state.cates.map(cate => (
       <NavItem key={cate.url}>
         <Link href={'/' + cate.url}>
           <a className="nav-link">{cate.name}</a>
         </Link>
       </NavItem>
-    )
+    ))
   }
 
   render() {
