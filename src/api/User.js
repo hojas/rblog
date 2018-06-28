@@ -52,7 +52,7 @@ module.exports = class UserController {
 
   static async logout(ctx) {
     delete ctx.session.user
-    ctx.body = { ok: true, msg: '退出成功' }
+    ctx.body = { ok: true, message: '退出成功' }
   }
 
   static getCurrentUser(ctx) {

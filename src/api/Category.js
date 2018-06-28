@@ -54,11 +54,7 @@ module.exports = class CategoryControl {
     }
   }
 
-  static async findAll(ctx, next) {
-    if (!isAdmin(ctx)) {
-      await next()
-    }
-
+  static async findAll(ctx) {
     ctx.body = await findAll(Category, 'categories')
   }
 }

@@ -1,8 +1,8 @@
 import Header from './Header'
 
-export default ({ children }) => (
+export default ({ user, children }) => (
   <div>
-    <Header />
+    <Header user={user} />
     <div className="container">{children}</div>
   </div>
 )

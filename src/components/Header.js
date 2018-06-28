@@ -19,15 +19,22 @@ export default class MainNavbar extends Component {
     this.logout = this.logout.bind(this)
     this.state = {
       isOpen: false,
-      user: {},
+      cates: [],
     }
   }
 
   async componentDidMount() {
-    const res = await ajax.get('users/current')
+    const currentUser = await ajax('users/current')
+    if (currentUser.data.ok) {
+      this.setState({
+        user: currentUser.data.user,
+      })
+    }
+
+    const res = await ajax('categories')
     if (res.data.ok) {
       this.setState({
-        user: res.data.user,
+        cates: res.data.categories,
       })
     }
   }
@@ -42,7 +49,7 @@ export default class MainNavbar extends Component {
     e.preventDefault()
 
     const res = await ajax.get('users/logout')
-    if (res.ok) {
+    if (res.data.ok) {
       this.setState({
         user: {},
       })
@@ -50,13 +57,22 @@ export default class MainNavbar extends Component {
   }
 
   renderUser() {
-    const user = this.state.user
+    const user = this.props.user || this.state.user
+    console.log(this.props.user)
+    console.log(this.state.user)
     if (user && user.username) {
       return (
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink href="#">Hi, {user.username}</NavLink>
           </NavItem>
+          {user.isAdmin ? (
+            <NavItem>
+              <Link href="/admin">
+                <a className="nav-link">管理</a>
+              </Link>
+            </NavItem>
+          ) : ''}
           <NavItem>
             <NavLink href="#" onClick={this.logout}>
               退出
@@ -78,6 +94,16 @@ export default class MainNavbar extends Component {
           </Link>
         </NavItem>
       </Nav>
+    )
+  }
+
+  renderCates() {
+    return this.state.cates.map(cate =>
+      <NavItem key={cate.url}>
+        <Link href={'/' + cate.url}>
+          <a className="nav-link">{cate.name}</a>
+        </Link>
+      </NavItem>
     )
   }
 
@@ -107,16 +133,7 @@ export default class MainNavbar extends Component {
                   <a className="nav-link">首页</a>
                 </Link>
               </NavItem>
-              <NavItem>
-                <Link href="/frontend">
-                  <a className="nav-link">前端开发</a>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="nodejs">
-                  <a className="nav-link">Node.js</a>
-                </Link>
-              </NavItem>
+              {this.renderCates()}
             </Nav>
             {this.renderUser()}
           </Collapse>

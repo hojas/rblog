@@ -12,12 +12,11 @@ const columns = [{
   dataIndex: 'email',
   key: 'email',
 }, {
-  title: '操作',
-  key: 'action',
+  title: '角色',
+  dataIndex: 'isAdmin',
+  key: 'isAdmin',
   render: (text, record) => (
-    <span>
-      <a href="javascript:;">删除</a>
-    </span>
+    <span>{record.isAdmin ? '管理员' : '普通用户'}</span>
   )
 }]
 

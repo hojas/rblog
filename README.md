@@ -14,9 +14,9 @@ A blog build with Koa2 and React.
 
 ## Deploy
 
-1. Clone project: git clone https://github.com/hojas/rblog.git
+1. Clone project: `git clone https://github.com/hojas/rblog.git`
 2. Install docker and docker-compose
-3. Run docker service: sudo service docker start
-4. Install packages: npm install
-5. Build app: npm run build
-6. Run app in docker: docker-compose up -d
+3. Run docker service: `sudo service docker start`
+4. Install packages: `npm install`
+5. Build app: `npm run build`
+6. Run app in docker: `docker-compose up -d`
