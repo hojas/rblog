@@ -1,19 +1,31 @@
 import { Component } from 'react'
+import Link from 'next/link'
 import { Table, Button, Divider } from 'antd'
 import Layout from '../../components/AdminLayout'
-import CateModal from '../../components/admin/CateModal'
+import PostModal from '../../components/admin/PostModal'
 import ajax from '../../ajax'
 
 const columns = _this => [
   {
     title: '名称',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'title',
+    key: 'title',
   },
   {
-    title: 'URL',
-    dataIndex: 'url',
-    key: 'url',
+    title: '分类',
+    dataIndex: 'category',
+    key: 'category',
+    render: (text, record) => (
+      <span>{record.category.name}</span>
+    )
+  },
+  {
+    title: '作者',
+    dataIndex: 'author',
+    key: 'author',
+    render: (text, record) => (
+      <span>{record.author.username}</span>
+    )
   },
   {
     title: '操作',
@@ -24,6 +36,10 @@ const columns = _this => [
           更改
         </a>
         <Divider type="vertical" />
+        <Link href="/admin/edit">
+          编辑内容
+        </Link>
+        <Divider type="vertical" />
         <a href="javascript:;" onClick={() => _this.toggleRemoveModal(record)}>
           删除
         </a>
@@ -32,13 +48,13 @@ const columns = _this => [
   },
 ]
 
-export default class CategoryManagement extends Component {
+export default class PostManagement extends Component {
   state = {
     visibleAddModal: false,
     visibleUpdateModal: false,
     visibleRemoveModal: false,
-    cate: {},
-    cates: [],
+    post: {},
+    posts: [],
   }
 
   toggleAddModal = () => {
@@ -47,28 +63,28 @@ export default class CategoryManagement extends Component {
     })
   }
 
-  toggleUpdateModal = (cate = this.state.cate) => {
+  toggleUpdateModal = (post = this.state.post) => {
     this.setState({
       visibleUpdateModal: !this.state.visibleUpdateModal,
-      cate,
+      post,
     })
   }
 
-  toggleRemoveModal = (cate = this.state.cate) => {
+  toggleRemoveModal = (post = this.state.post) => {
     this.setState({
       visibleRemoveModal: !this.state.visibleRemoveModal,
-      cate,
+      post,
     })
   }
 
   add = async e => {
     e.preventDefault()
 
-    const res = await ajax.post('categories', {
-      ...this.state.cate,
+    const res = await ajax.post('posts', {
+      ...this.state.post,
     })
     if (res.data.ok) {
-      await this.getCates()
+      await this.getPosts()
     }
     this.toggleAddModal()
   }
@@ -76,11 +92,13 @@ export default class CategoryManagement extends Component {
   update = async e => {
     e.preventDefault()
 
-    const res = await ajax.put('categories', {
-      ...this.state.cate,
+    const res = await ajax.put('posts', {
+      params: {
+        ...this.state.post,
+      }
     })
     if (res.data.ok) {
-      await this.getCates()
+      await this.getPosts()
     }
     this.toggleUpdateModal()
   }
@@ -88,72 +106,77 @@ export default class CategoryManagement extends Component {
   remove = async e => {
     e.preventDefault()
 
-    const res = await ajax.delete('categories', {
+    const res = await ajax.delete('posts', {
       params: {
-        ...this.state.cate,
-      },
+        ...this.state.post,
+      }
     })
     if (res.data.ok) {
-      await this.getCates()
+      await this.getPosts()
     }
     this.toggleRemoveModal()
   }
 
   handleInput = e => {
-    const target = e.target
-    const name = target.name
-    const value = target.value
-
+    let data = {}
+    if (typeof e === 'string') {
+      data.category = e
+    } else {
+      const target = e.target
+      const name = target.name
+      const value = target.value
+      data[name] = value
+    }
     this.setState({
-      cate: {
-        ...this.state.cate,
-        [name]: value,
+      post: {
+        ...this.state.post,
+        ...data,
       },
     })
   }
 
-  getCates = async () => {
-    const res = await ajax('categories')
+  getPosts = async () => {
+    const res = await ajax('posts')
     if (res.data.ok) {
       this.setState({
-        cates: res.data.categories,
+        posts: res.data.posts,
       })
     }
   }
 
   componentDidMount() {
-    this.getCates()
+    this.getPosts()
   }
 
   render() {
-    const cates = this.state.cates
+    const posts = this.state.posts
 
     return (
-      <Layout activeMenu="categories">
-        <div style={{ marginBottom: '16px' }}>
-          <Button onClick={this.toggleAddModal}>添加分类</Button>
+      <Layout activeMenu="posts">
+        <div style={{ marginBottom: '8px' }}>
+          <Button onClick={this.toggleAddModal}>添加文章</Button>
         </div>
-        <Table columns={columns(this)} dataSource={cates} />
-        <CateModal
-          title="添加分类"
+        <Table columns={columns(this)} dataSource={posts} />
+        <PostModal
+          title="添加文章"
           visible={this.state.visibleAddModal}
-          cate={this.state.cate}
+          post={this.state.post}
           hideModal={this.toggleAddModal}
           handleInput={this.handleInput}
           handleSubmit={this.add}
         />
-        <CateModal
-          title="更新分类"
+        <PostModal
+          title="更新文章"
           visible={this.state.visibleUpdateModal}
-          cate={this.state.cate}
+          post={this.state.post}
           hideModal={this.toggleUpdateModal}
           handleInput={this.handleInput}
           handleSubmit={this.update}
         />
-        <CateModal
-          title="删除分类"
+        <PostModal
+          title="删除文章"
           visible={this.state.visibleRemoveModal}
-          cate={this.state.cate}
+          post={this.state.post}
           hideModal={this.toggleRemoveModal}
           handleInput={null}
           handleSubmit={this.remove}

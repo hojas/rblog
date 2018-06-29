@@ -1,7 +1,7 @@
 const Category = require('../models/Category')
 const { isAdmin, save, update, remove, findAll } = require('./utils')
 
-module.exports = class CategoryControl {
+module.exports = class CategoryController {
   static async add(ctx, next) {
     if (!isAdmin(ctx)) {
       await next()
