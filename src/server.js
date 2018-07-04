@@ -36,7 +36,7 @@ app.prepare().then(async () => {
   server.use(logger())
 
   const router = new Router()
-  routers(router)
+  routers(app, router)
   router.get('*', async ctx => {
     await handle(ctx.req, ctx.res)
     ctx.respond = false

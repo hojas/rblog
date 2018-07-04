@@ -1,0 +1,17 @@
+.editorContainer {
+  overflow: hidden;
+}
+
+.editor {
+  float: left;
+  width: 50%;
+  height: 500px;
+}
+
+.viewer {
+  float: left;
+  width: 50%;
+  height: 500px;
+  padding: 0 10px;
+  overflow-y: auto;
+}

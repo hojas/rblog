@@ -1,6 +1,6 @@
 const Post = require('../models/Post')
 const Category = require('../models/Category')
-const { isAdmin, save, update, remove, findAll } = require('./utils')
+const { isAdmin, save, update, remove, findById, findAll } = require('./utils')
 
 const mapCates = async () => {
   const cates = await Category.find({})
@@ -23,8 +23,6 @@ module.exports = class PostController {
       content,
       category,
     } = ctx.request.body
-    console.log('category ', category)
-    console.log('category ', cates[category])
     const post = new Post({
       title,
       content,
@@ -33,7 +31,6 @@ module.exports = class PostController {
     })
 
     const res = await save(post)
-    console.log(res)
     if (res.ok) {
       ctx.body = { ok: true, message: '添加文章成功' }
     } else {
@@ -57,7 +54,7 @@ module.exports = class PostController {
       _id,
       title,
       content,
-      category: cates[category],
+      category: typeof category === 'object' ? cates[category.url] : cates[category],
     }
 
     const res = await update(Post, post)
@@ -68,13 +65,35 @@ module.exports = class PostController {
     }
   }
 
+  static async updateContent(ctx, next) {
+    if (!isAdmin(ctx)) {
+      await next()
+    }
+
+    const {
+      _id,
+      content,
+    } = ctx.request.body
+    const post = {
+      _id,
+      content,
+    }
+
+    const res = await update(Post, post)
+    if (res.ok) {
+      ctx.body = { ok: true, message: '更新文章成功' }
+    } else {
+      ctx.body = { ok: true, message: '更新文章失败' }
+    }
+  }
+
   static async remove(ctx, next) {
     if (!isAdmin(ctx)) {
       await next()
     }
 
-    const { _id } = ctx.request.body
-    const res = remove(Post, _id)
+    const { _id } = ctx.request.query
+    const res = await remove(Post, _id)
     if (res.ok) {
       ctx.body = { ok: true, message: '删除文章成功' }
     } else {
@@ -82,7 +101,25 @@ module.exports = class PostController {
     }
   }
 
+  static async findById(ctx) {
+    const id = ctx.params.id
+    const res = await findById(Post, id, 'post')
+    if (res.ok) {
+      ctx.body = { ok: true, post: res.post }
+    } else {
+      ctx.body = { ok: false, message: '文章不存在' }
+    }
+  }
+
   static async findAll(ctx) {
-    ctx.body = await findAll(Post, 'posts')
+    const cate_url  = ctx.request.query.category
+    console.log('cate url ', cate_url)
+    const cates = await mapCates()
+    let category = null
+    if (cate_url) {
+      category = cates[cate_url]
+    }
+    const query = category ? { category } : category
+    ctx.body = await findAll(Post, 'posts', query)
   }
 }

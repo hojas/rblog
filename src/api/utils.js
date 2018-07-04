@@ -27,7 +27,6 @@ exports.save = async doc => {
     await doc.save()
     return { ok: true }
   } catch (err) {
-    console.log(err)
     return { ok: false }
   }
 }
@@ -50,7 +49,19 @@ exports.remove = async (model, id) => {
   }
 }
 
-exports.findOne = async (model, query, name) => {
+exports.findAll = async (model, name, query = {}) => {
+  try {
+    const res = await model.find(query)
+    if (res) {
+      return { ok: true, [name]: res }
+    }
+    return { ok: false }
+  } catch (err) {
+    return { ok: false }
+  }
+}
+
+const findOne = async (model, query, name) => {
   try {
     const res = await model.findOne(query)
     if (res) {
@@ -62,16 +73,5 @@ exports.findOne = async (model, query, name) => {
   }
 }
 
+exports.findOne = findOne
 exports.findById = async (model, id, name) => findOne(model, { _id: id }, name)
-
-exports.findAll = async (model, name) => {
-  try {
-    const res = await model.find({})
-    if (res) {
-      return { ok: true, [name]: res }
-    }
-    return { ok: false }
-  } catch (err) {
-    return { ok: false }
-  }
-}

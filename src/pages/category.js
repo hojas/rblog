@@ -3,13 +3,18 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import ajax from '../ajax'
 
-export default class HomePage extends Component {
+export default class CategoryPage extends Component {
   state = {
     posts: [],
   }
 
   async componentDidMount() {
-    const res = await ajax('posts')
+    const { category } = this.props.url.query
+    const res = await ajax('posts', {
+      params: {
+        category,
+      }
+    })
     if (res.data.ok) {
       this.setState({
         posts: res.data.posts,

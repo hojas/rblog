@@ -50,14 +50,15 @@ class PostForm extends Component {
       <Form onSubmit={e => this.props.handleSubmit(e)}>
         <FormItem label="标题">
           <Input
-            value={this.props.post.title}
             name="title"
+            value={this.props.post.title}
             onChange={this.props.handleInput}
           />
         </FormItem>
         <FormItem label="分类">
           <Select
             name="category"
+            defaultValue={this.props.post.category && this.props.post.category.url}
             onChange={this.props.handleInput}>
             {this.renderCates()}
           </Select>

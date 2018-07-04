@@ -16,7 +16,7 @@ const columns = _this => [
     dataIndex: 'category',
     key: 'category',
     render: (text, record) => (
-      <span>{record.category.name}</span>
+      <span>{record.category && record.category.name}</span>
     )
   },
   {
@@ -33,11 +33,11 @@ const columns = _this => [
     render: (text, record) => (
       <span>
         <a href="javascript:;" onClick={() => _this.toggleUpdateModal(record)}>
-          更改
+          更新
         </a>
         <Divider type="vertical" />
-        <Link href="/admin/edit">
-          编辑内容
+        <Link href={ "/admin/editor/" + record._id }>
+          <a>编辑内容</a>
         </Link>
         <Divider type="vertical" />
         <a href="javascript:;" onClick={() => _this.toggleRemoveModal(record)}>
@@ -93,9 +93,7 @@ export default class PostManagement extends Component {
     e.preventDefault()
 
     const res = await ajax.put('posts', {
-      params: {
-        ...this.state.post,
-      }
+      ...this.state.post,
     })
     if (res.data.ok) {
       await this.getPosts()

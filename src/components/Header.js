@@ -58,8 +58,7 @@ export default class MainNavbar extends Component {
 
   renderUser() {
     const user = this.props.user || this.state.user
-    console.log(this.props.user)
-    console.log(this.state.user)
+
     if (user && user.username) {
       return (
         <Nav className="ml-auto" navbar>
@@ -102,7 +101,7 @@ export default class MainNavbar extends Component {
   renderCates() {
     return this.state.cates.map(cate => (
       <NavItem key={cate.url}>
-        <Link href={'/' + cate.url}>
+        <Link href={'/category/' + cate.url}>
           <a className="nav-link">{cate.name}</a>
         </Link>
       </NavItem>
@@ -113,14 +112,9 @@ export default class MainNavbar extends Component {
     return (
       <div>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css"
-          />
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css" />
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <Navbar color="light" light expand="md">
