@@ -112,9 +112,18 @@ export default class MainNavbar extends Component {
     return (
       <div>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css"
+          />
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <Navbar color="light" light expand="md">

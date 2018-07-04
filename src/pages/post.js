@@ -28,7 +28,10 @@ export default class PostPage extends Component {
     return (
       <Layout>
         <div className={styles.postTitle}>{post.title}</div>
-        <div className={styles.postContent + " markdown-body"} dangerouslySetInnerHTML={this.renderMarkup(content)}></div>
+        <div
+          className={styles.postContent + ' markdown-body'}
+          dangerouslySetInnerHTML={this.renderMarkup(content)}
+        />
       </Layout>
     )
   }

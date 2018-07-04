@@ -17,15 +17,13 @@ const columns = _this => [
     key: 'category',
     render: (text, record) => (
       <span>{record.category && record.category.name}</span>
-    )
+    ),
   },
   {
     title: '作者',
     dataIndex: 'author',
     key: 'author',
-    render: (text, record) => (
-      <span>{record.author.username}</span>
-    )
+    render: (text, record) => <span>{record.author.username}</span>,
   },
   {
     title: '操作',
@@ -36,7 +34,7 @@ const columns = _this => [
           更新
         </a>
         <Divider type="vertical" />
-        <Link href={ "/admin/editor/" + record._id }>
+        <Link href={'/admin/editor/' + record._id}>
           <a>编辑内容</a>
         </Link>
         <Divider type="vertical" />
@@ -107,7 +105,7 @@ export default class PostManagement extends Component {
     const res = await ajax.delete('posts', {
       params: {
         ...this.state.post,
-      }
+      },
     })
     if (res.data.ok) {
       await this.getPosts()

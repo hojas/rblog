@@ -21,7 +21,7 @@ export default class PostEditor extends Component {
     const res = await ajax.put('posts/content', post)
     if (res.data.ok) {
       message.success('保存成功')
-    } else  {
+    } else {
       message.error('保存失败')
     }
   }
@@ -57,12 +57,14 @@ export default class PostEditor extends Component {
           <textarea
             className={styles.editor}
             value={this.state.content}
-            onChange={this.handleChange}>
-          </textarea>
+            onChange={this.handleChange}
+          />
           <div
             className={styles.viewer + ' markdown-body'}
-            dangerouslySetInnerHTML={this.renderMarkup(this.state.contentMarked)}>
-          </div>
+            dangerouslySetInnerHTML={this.renderMarkup(
+              this.state.contentMarked
+            )}
+          />
         </div>
       </Layout>
     )

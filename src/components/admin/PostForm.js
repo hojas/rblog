@@ -1,4 +1,3 @@
-
 import { Component } from 'react'
 import { Form, Input, Select, Alert, Button } from 'antd'
 import ajax from '../../ajax'
@@ -11,9 +10,11 @@ class PostForm extends Component {
   }
 
   renderCates = () => {
-    return this.state.cates.map(cate =>
-      <Select.Option value={cate.url} key={cate.url}>{cate.name}</Select.Option>
-    )
+    return this.state.cates.map(cate => (
+      <Select.Option value={cate.url} key={cate.url}>
+        {cate.name}
+      </Select.Option>
+    ))
   }
 
   async componentDidMount() {
@@ -58,8 +59,11 @@ class PostForm extends Component {
         <FormItem label="分类">
           <Select
             name="category"
-            defaultValue={this.props.post.category && this.props.post.category.url}
-            onChange={this.props.handleInput}>
+            defaultValue={
+              this.props.post.category && this.props.post.category.url
+            }
+            onChange={this.props.handleInput}
+          >
             {this.renderCates()}
           </Select>
         </FormItem>

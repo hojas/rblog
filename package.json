@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/hojas/rblog#readme",
   "dependencies": {
-    "antd": "^3.6.4",
+    "antd": "^3.6.5",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "koa": "^2.5.1",
@@ -35,15 +35,15 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.1",
     "marked": "^0.4.0",
-    "mongoose": "^5.1.7",
-    "next": "^6.0.3",
+    "mongoose": "^5.2.1",
+    "next": "^6.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "reactstrap": "^6.1.0"
+    "reactstrap": "^6.2.0"
   },
   "devDependencies": {
     "@zeit/next-sass": "^0.2.0",
     "node-sass": "^4.9.0",
-    "prettier": "^1.13.6"
+    "prettier": "^1.13.7"
   }
 }

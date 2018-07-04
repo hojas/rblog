@@ -1,16 +1,18 @@
 # rblog
 
-A blog build with Koa2 and React.
+A blog build with Koa.js and React.
 
 ## Main technology
 
 1. Node.js v8.x
-2. MongoDB
-3. Koa
-4. next.js
-5. React
-6. ant-design
-7. Bootstrap
+2. Koa.js
+3. MongoDB
+4. React
+5. next.js
+6. ant design
+7. Bootstrap 4
+8. Docker
+9. ...
 
 ## Deploy
 

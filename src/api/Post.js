@@ -18,11 +18,7 @@ module.exports = class PostController {
     }
 
     const cates = await mapCates()
-    const {
-      title,
-      content,
-      category,
-    } = ctx.request.body
+    const { title, content, category } = ctx.request.body
     const post = new Post({
       title,
       content,
@@ -44,17 +40,13 @@ module.exports = class PostController {
     }
 
     const cates = await mapCates()
-    const {
-      _id,
-      title,
-      content,
-      category,
-    } = ctx.request.body
+    const { _id, title, content, category } = ctx.request.body
     const post = {
       _id,
       title,
       content,
-      category: typeof category === 'object' ? cates[category.url] : cates[category],
+      category:
+        typeof category === 'object' ? cates[category.url] : cates[category],
     }
 
     const res = await update(Post, post)
@@ -70,10 +62,7 @@ module.exports = class PostController {
       await next()
     }
 
-    const {
-      _id,
-      content,
-    } = ctx.request.body
+    const { _id, content } = ctx.request.body
     const post = {
       _id,
       content,
@@ -112,7 +101,7 @@ module.exports = class PostController {
   }
 
   static async findAll(ctx) {
-    const cate_url  = ctx.request.query.category
+    const cate_url = ctx.request.query.category
     console.log('cate url ', cate_url)
     const cates = await mapCates()
     let category = null

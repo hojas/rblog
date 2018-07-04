@@ -37,8 +37,14 @@ export default class AdminLayout extends Component {
       <Layout className={css['admin-layout']}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/antd@3.6.1/dist/antd.min.css" />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css" />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/antd@3.6.1/dist/antd.min.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css"
+          />
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>

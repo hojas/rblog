@@ -19,9 +19,11 @@ export default class HomePage extends Component {
 
   renderPosts = () => {
     return this.state.posts.map(post => {
-      return <Link href={"/posts/" + post._id} key={post._id}>
-        <a className="list-group-item list-group-item-action">{post.title}</a>
-      </Link>
+      return (
+        <Link href={'/posts/' + post._id} key={post._id}>
+          <a className="list-group-item list-group-item-action">{post.title}</a>
+        </Link>
+      )
     })
   }
 
