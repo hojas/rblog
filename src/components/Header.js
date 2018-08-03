@@ -12,15 +12,9 @@ import Link from 'next/link'
 import ajax from '../ajax'
 
 export default class MainNavbar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.logout = this.logout.bind(this)
-    this.state = {
-      isOpen: false,
-      cates: [],
-    }
+  state = {
+    isOpen: false,
+    cates: [],
   }
 
   async componentDidMount() {
@@ -39,13 +33,13 @@ export default class MainNavbar extends Component {
     }
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen,
     })
   }
 
-  async logout(e) {
+  logout = async e => {
     e.preventDefault()
 
     const res = await ajax.get('users/logout')
@@ -56,7 +50,7 @@ export default class MainNavbar extends Component {
     }
   }
 
-  renderUser() {
+  renderUser = () => {
     const user = this.props.user || this.state.user
 
     if (user && user.username) {
@@ -72,8 +66,8 @@ export default class MainNavbar extends Component {
               </Link>
             </NavItem>
           ) : (
-            ''
-          )}
+              ''
+            )}
           <NavItem>
             <NavLink href="#" onClick={this.logout}>
               退出
@@ -98,7 +92,7 @@ export default class MainNavbar extends Component {
     )
   }
 
-  renderCates() {
+  renderCates = () => {
     return this.state.cates.map(cate => (
       <NavItem key={cate.url}>
         <Link href={'/category/' + cate.url}>
@@ -125,10 +119,11 @@ export default class MainNavbar extends Component {
             href="https://cdn.jsdelivr.net/npm/github-markdown-css@2.10.0/github-markdown.min.css"
           />
           <link rel="stylesheet" href="/_next/static/style.css" />
+          <title>rblog</title>
         </Head>
         <Navbar color="light" light expand="md">
           <Link href="/">
-            <a className="navbar-brand">前端日志网</a>
+            <a className="navbar-brand">rblog</a>
           </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

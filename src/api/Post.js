@@ -102,7 +102,6 @@ module.exports = class PostController {
 
   static async findAll(ctx) {
     const cate_url = ctx.request.query.category
-    console.log('cate url ', cate_url)
     const cates = await mapCates()
     let category = null
     if (cate_url) {

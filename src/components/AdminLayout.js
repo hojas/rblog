@@ -1,24 +1,21 @@
 import { Component } from 'react'
 import Head from 'next/head'
+import Error from 'next/error'
 import Router from 'next/router'
 import { Layout, Menu, Icon } from 'antd'
+import ajax from '../ajax'
 import css from './styles/adminLayout.scss'
 
 const { Header, Sider, Content } = Layout
 
 export default class AdminLayout extends Component {
-  constructor(props) {
-    super(props)
-
-    this.activeMenu = props.activeMenu || 'users'
-    this.pushRouter = this.pushRouter.bind(this)
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      collapsed: false,
-    }
+  state = {
+    activeMenu: this.props.activeMenu || 'users',
+    collapsed: false,
+    statusCode: null,
   }
 
-  pushRouter({ item, key, keyPath }) {
+  pushRouter = ({ item, key, keyPath }) => {
     if (key === 'users') {
       Router.push(`/admin`)
     } else {
@@ -26,13 +23,36 @@ export default class AdminLayout extends Component {
     }
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     })
   }
 
+  async componentDidMount() {
+    const currentUser = await ajax('users/current')
+    if (currentUser.data.ok) {
+      if (currentUser.data.user.isAdmin) {
+        this.setState({
+          statusCode: 200,
+        })
+      } else {
+        this.setState({
+          statusCode: 404,
+        })
+      }
+    }
+  }
+
   render() {
+    const statusCode = this.state.statusCode
+    if (statusCode === null) {
+      return <div>页面加载中...</div>
+    }
+    if (statusCode === 404) {
+      return <Error statusCode={statusCode} />
+    }
+
     return (
       <Layout className={css['admin-layout']}>
         <Head>
@@ -48,11 +68,11 @@ export default class AdminLayout extends Component {
           <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className={css.logo}>前端日志网</div>
+          <div className={css.logo}>rblog</div>
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={[this.activeMenu]}
+            defaultSelectedKeys={[this.state.activeMenu]}
             onClick={this.pushRouter}
           >
             <Menu.Item key="users">
